@@ -61,6 +61,7 @@ module.exports = {
           'Safari >= 8',
         ],
       }),
+      require('postcss-flexbugs-fixes'),
     ];
   },
 

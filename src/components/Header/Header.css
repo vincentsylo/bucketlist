@@ -1,0 +1,12 @@
+.root {
+  display: flex;
+  width: 100%;
+}
+
+.leftColumn {
+  flex: 1;
+}
+
+.rightColumn {
+  float: right;
+}
