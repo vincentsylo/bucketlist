@@ -1,9 +1,9 @@
+import { match } from 'react-router';
 import getRoutes from '../routes';
 import configureStore from './configureStore';
 import getHtml from './getHtml';
-import { match } from 'react-router';
 
-module.exports = function(req, res) {
+module.exports = function setHtml(req, res) {
   match({
     routes: getRoutes(configureStore(), req),
     location: req.url,
@@ -13,9 +13,9 @@ module.exports = function(req, res) {
     } else if (redirectLocation) {
       res.redirect(302, `${redirectLocation.pathname}${redirectLocation.search}`);
     } else if (renderProps) {
-      getHtml(req, res, renderProps)
+      getHtml(req, res, renderProps);
     } else {
       res.status(404);
     }
   });
-}
+};

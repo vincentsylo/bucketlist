@@ -9,7 +9,9 @@ export default function configureStore(initialState) {
 
   if (module.hot) {
     module.hot.accept('../reducers', () => {
+      /* eslint-disable */
       const nextRootReducer = require('../reducers').default;
+      /* eslint-enable */
       store.replaceReducer(nextRootReducer);
     });
   }

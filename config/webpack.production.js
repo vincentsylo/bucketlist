@@ -70,6 +70,11 @@ module.exports = {
         ],
       }),
       require('postcss-flexbugs-fixes'),
+      require('postcss-simple-vars')({
+        variables: function () {
+          return require('./colors');
+        }
+      }),
     ];
   },
 

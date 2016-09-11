@@ -3,9 +3,9 @@ import { renderToStaticMarkup } from 'react-dom/server';
 import { RouterContext } from 'react-router';
 import Helmet from 'react-helmet';
 import { Provider } from 'react-redux';
+import _ from 'lodash';
 import configureStore from './configureStore';
 import Root from '../containers/Root';
-import _ from 'lodash';
 
 function renderComponentWithRoot(Component, componentProps, store) {
   const componentHtml = renderToStaticMarkup(

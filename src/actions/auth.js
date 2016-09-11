@@ -1,8 +1,9 @@
+import axios from 'axios';
+
 export const AUTH_INVALID = 'AUTH_INVALID';
 export const AUTH_FETCHING = 'AUTH_FETCHING';
 export const AUTH_FETCHED = 'AUTH_FETCHED';
 export const AUTH_FETCH_FAILED = 'AUTH_FETCH_FAILED';
-import axios from 'axios';
 
 export function fetchAuth() {
   return (dispatch) => {
@@ -14,4 +15,5 @@ export function fetchAuth() {
       .catch((error) => {
         dispatch({ type: AUTH_FETCH_FAILED, error });
       });
-  };}
+  };
+}

@@ -22,7 +22,7 @@ export default class Root extends Component {
     } = this.props;
 
     return (
-      <html>
+      <html lang="en">
         <head>
           {head.title.toComponent()}
           {head.meta.toComponent()}

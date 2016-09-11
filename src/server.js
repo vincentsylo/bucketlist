@@ -1,3 +1,4 @@
+/* eslint-disable global-require, no-console */
 require('babel-core/register');
 require('css-modules-require-hook/preset');
 require('babel-polyfill');
@@ -24,13 +25,13 @@ server.get('/favicon.ico', (req, res) => {
 
 if (process.env.NODE_ENV === 'development') {
   const webpack = require('webpack');
-  const webpackDashboard = require('webpack-dashboard');
-  const webpackDashboardPlugin = require('webpack-dashboard/plugin');
+  const WebpackDashboard = require('webpack-dashboard');
+  const WebpackDashboardPlugin = require('webpack-dashboard/plugin');
   const config = require('../config/webpack.development.js');
 
   const compiler = webpack(config);
-  const dashboard = new webpackDashboard();
-  compiler.apply(new webpackDashboardPlugin(dashboard.setData));
+  const dashboard = new WebpackDashboard();
+  compiler.apply(new WebpackDashboardPlugin(dashboard.setData));
 
   server.use(require('webpack-dev-middleware')(compiler, {
     publicPath: config.output.publicPath,
@@ -58,3 +59,4 @@ server.listen(port, (err) => {
   }
   console.info('==> 🌎 Listening on port %s. Open up http://localhost:%s/ in your browser.', port, port);
 });
+/* eslint-enable global-require, no-console */
