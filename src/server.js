@@ -25,14 +25,9 @@ server.get('/favicon.ico', (req, res) => {
 
 if (process.env.NODE_ENV === 'development') {
   const webpack = require('webpack');
-  const WebpackDashboard = require('webpack-dashboard');
-  const WebpackDashboardPlugin = require('webpack-dashboard/plugin');
   const config = require('../config/webpack.development.js');
 
   const compiler = webpack(config);
-  const dashboard = new WebpackDashboard();
-  compiler.apply(new WebpackDashboardPlugin(dashboard.setData));
-
   server.use(require('webpack-dev-middleware')(compiler, {
     publicPath: config.output.publicPath,
     stats: {
@@ -43,20 +38,22 @@ if (process.env.NODE_ENV === 'development') {
       chunkModules: false,
       modules: false,
     },
-    quiet: true,
   }));
-  server.use(require('webpack-hot-middleware')(compiler, {
-    log: () => {},
-  }));
+  server.use(require('webpack-hot-middleware')(compiler));
 }
 
+require('./server/passport')(server);
+require('./server/api')(server);
 server.get('*', setHtml);
 
+const models = require('./server/models');
 const port = process.env.PORT || 3000;
-server.listen(port, (err) => {
-  if (err) {
-    console.error(err);
-  }
-  console.info('==> 🌎 Listening on port %s. Open up http://localhost:%s/ in your browser.', port, port);
+models.sequelize.sync({ force: false }).then(() => {
+  server.listen(port, (err) => {
+    if (err) {
+      console.error(err);
+    }
+    console.info('==> 🌎 Listening on port %s. Open up http://localhost:%s/ in your browser.', port, port);
+  });
 });
 /* eslint-enable global-require, no-console */
