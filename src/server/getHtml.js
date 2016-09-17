@@ -4,7 +4,7 @@ import { RouterContext } from 'react-router';
 import Helmet from 'react-helmet';
 import { Provider } from 'react-redux';
 import _ from 'lodash';
-import configureStore from './configureStore';
+import configureStore from '../store/configureStore';
 import Root from '../containers/Root';
 
 function renderComponentWithRoot(Component, componentProps, store) {

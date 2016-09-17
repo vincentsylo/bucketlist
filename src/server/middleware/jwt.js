@@ -3,6 +3,7 @@ const models = require('../models');
 
 module.exports = (req, res, next) => {
   const token = req.cookies.access_token;
+
   if (token) {
     const decoded = jwt.decode(token, process.env.JWT_SECRET);
     if (!decoded) {

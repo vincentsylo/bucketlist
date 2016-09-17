@@ -7,7 +7,7 @@ import {
 
 export default function auth(state = {
   readyState: AUTH_INVALID,
-  auth: null,
+  user: null,
 }, action) {
   switch (action.type) {
     case AUTH_FETCHING:
@@ -25,7 +25,7 @@ export default function auth(state = {
       return {
         ...state,
         readyState: AUTH_FETCHED,
-        auth: action.result,
+        user: action.result,
       };
     default:
       return state;

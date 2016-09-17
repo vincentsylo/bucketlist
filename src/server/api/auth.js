@@ -1,6 +1,7 @@
 import passport from 'passport';
 import jwt from 'jwt-simple';
 import moment from 'moment';
+import jwtMiddleware from '../middleware/jwt';
 
 const authRouter = (server) => {
   /**
@@ -10,29 +11,38 @@ const authRouter = (server) => {
     passport.authenticate('local', (err, user) => {
       if (err) { return res.sendStatus(400); }
       if (!user) {
-        return res.sendStatus(401);
+        return res.sendStatus(403);
       }
 
-      const expires = moment().add(7, 'days').valueOf();
+      let expires = moment().add(12, 'hours').toDate();
+      if (req.body.rememberMe) {
+        expires = moment().add(7, 'days').toDate();
+      }
+
       const token = jwt.encode({
         id: user.id,
         expires,
       }, process.env.JWT_SECRET);
 
-      res.cookie('access_token', token);
-      return res.json({ token, expires, user });
+      res.cookie('access_token', token, { expires });
+      return res.json({ token });
     })(req, res);
   });
 
   /**
    * Logout
    */
-  server.post('/api/auth/logout',
-    (req, res) => {
-      req.logout();
-      res.redirect('/');
-    }
-  );
+  server.post('/api/auth/logout', (req, res) => {
+    req.logout();
+    res.redirect('/');
+  });
+
+  /**
+   * Validate current user
+   */
+  server.post('/api/auth/validate', jwtMiddleware, (req, res) => {
+    return res.json({ validated: true });
+  });
 };
 
 module.exports = authRouter;

@@ -1,6 +1,6 @@
 import { match } from 'react-router';
 import getRoutes from '../routes';
-import configureStore from './configureStore';
+import configureStore from '../store/configureStore';
 import getHtml from './getHtml';
 
 module.exports = function setHtml(req, res) {
