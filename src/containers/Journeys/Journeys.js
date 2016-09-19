@@ -38,13 +38,13 @@ export default class Journeys extends Component {
             name: row[0],
           });
 
-          google.maps.event.addListener(country, 'mouseover', () => {
+          google.maps.event.addListener(country, 'mouseover', function() {
             this.setOptions({ fillOpacity: 0.4 });
           });
-          google.maps.event.addListener(country, 'mouseout', () => {
+          google.maps.event.addListener(country, 'mouseout', function() {
             this.setOptions({ fillOpacity: 0 });
           });
-          google.maps.event.addListener(country, 'click', () => {
+          google.maps.event.addListener(country, 'click', function() {
             alert(this.name);
           });
 
