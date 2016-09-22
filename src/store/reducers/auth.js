@@ -3,10 +3,11 @@ import {
   AUTH_FETCHING,
   AUTH_FETCHED,
   AUTH_FETCH_FAILED,
-} from '../actions/auth';
+} from '../actions/authActions';
 
 export default function auth(state = {
   readyState: AUTH_INVALID,
+  error: null,
   user: null,
 }, action) {
   switch (action.type) {
@@ -20,6 +21,7 @@ export default function auth(state = {
         ...state,
         readyState: AUTH_FETCH_FAILED,
         error: action.error,
+        user: null,
       };
     case AUTH_FETCHED:
       return {

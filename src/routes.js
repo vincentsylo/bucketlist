@@ -1,7 +1,7 @@
 import React from 'react';
 import { IndexRoute, Route } from 'react-router';
 import ReactCookie from 'react-cookie';
-import { AUTH_FETCHED, fetchAuth } from './store/actions/auth';
+import { authActions } from './store/actions';
 import { isClient } from './utils';
 import App from './containers/App/App';
 import Home from './containers/Home/Home';
@@ -25,8 +25,8 @@ export default (store, req, res) => {
       ReactCookie.setRawCookie(req.headers.cookie);
     }
 
-    if (store.getState().auth.readyState !== AUTH_FETCHED) {
-      store.dispatch(fetchAuth()).then(checkAuth);
+    if (store.getState().auth.readyState !== authActions.AUTH_FETCHED) {
+      store.dispatch(authActions.fetchAuth()).then(checkAuth);
     } else {
       checkAuth();
     }

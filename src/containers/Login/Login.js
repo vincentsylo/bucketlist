@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { api } from '../../utils';
-import { fetchAuth } from '../../store/actions/auth';
+import { authActions } from '../../store/actions';
 import styles from './Login.css';
 
 @connect()
@@ -25,7 +25,7 @@ export default class Login extends Component {
       const response = await api.post('/auth/login', { email, password, rememberMe });
 
       if (response) {
-        dispatch(fetchAuth());
+        dispatch(authActions.fetchAuth());
       }
     } catch (error) {
       console.log('invalid user');

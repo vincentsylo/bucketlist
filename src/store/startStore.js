@@ -1,7 +1,7 @@
-import { fetchAuth } from './actions/auth';
+import { authActions } from './actions';
 
 export default (store) => {
-  store.dispatch(fetchAuth());
+  store.dispatch(authActions.fetchAuth());
 
-  setInterval(() => store.dispatch(fetchAuth()), 60000);
+  setInterval(() => store.dispatch(authActions.checkAuthStatus()), 1000);
 }

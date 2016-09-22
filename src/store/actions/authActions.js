@@ -11,11 +11,19 @@ export function fetchAuth() {
 
     const response = await api.post('/auth/validate')
       .catch((error) => {
-        dispatch({ type: AUTH_FETCH_FAILED, error, result: null });
+        dispatch({ type: AUTH_FETCH_FAILED, error });
       });
 
     if (response) {
       dispatch({type: AUTH_FETCHED, result: response});
     }
   };
+}
+
+export function checkAuthStatus() {
+  return (dispatch, getState) => {
+    if (getState().auth.user) {
+      dispatch(fetchAuth());
+    }
+  }
 }
