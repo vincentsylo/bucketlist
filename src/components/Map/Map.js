@@ -1,21 +1,35 @@
 import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
+import { connect } from 'react-redux';
 import GoogleMap from 'google-map-react';
 import _ from 'lodash';
+import cx from 'classnames';
+import { mapActions } from '../../store/actions';
 import styles from './Map.css';
 
 const apiKey = 'AIzaSyCo_l1V0crfU0KwR6ifIkYj8aG85B20IUA';
 
+@connect(state => ({ ...state.map }))
 export default class Map extends Component {
+  static propTypes = {
+    dispatch: PropTypes.func,
+    selectionMode: PropTypes.oneOf(['', 'country', 'state']),
+    selectedCountry: PropTypes.string,
+    className: PropTypes.string,
+  };
+
   componentWillUnmount() {
-    delete window.drawMap;
+    delete window.drawCountry;
+    delete window.drawState;
 
     ReactDOM.unmountComponentAtNode(this._script);
     document.body.removeChild(this._script);
   }
 
-  setupMap(google) {
-    function drawMap(data) {
+  setupClickableCountries(google) {
+    const { dispatch } = this.props;
+
+    function drawCountry(data) {
       _.forEach(data['rows'], (row) => {
         let newCoordinates = [];
         const geometries = row[1]['geometries'];
@@ -43,7 +57,7 @@ export default class Map extends Component {
           this.setOptions({ fillOpacity: 0 });
         });
         google.maps.event.addListener(country, 'click', function() {
-          alert(this.name);
+          dispatch(mapActions.selectCountry(country.name));
         });
 
         country.setMap(google.map);
@@ -56,12 +70,69 @@ export default class Map extends Component {
       });
     }
 
-    window.drawMap = drawMap;
+    window.drawCountry = drawCountry;
 
     this._script = document.createElement('script');
     const query = encodeURIComponent('SELECT name, kml_4326 FROM 1foc3xO9DyfSIF6ofvN0kp2bxSfSeKog5FbdWdQ WHERE name DOES NOT CONTAIN \'Antarctica\'');
-    this._script.src = `https://www.googleapis.com/fusiontables/v1/query?sql=${query}&callback=drawMap&key=${apiKey}`
+    this._script.src = `https://www.googleapis.com/fusiontables/v1/query?sql=${query}&callback=drawCountry&key=${apiKey}`;
     document.body.appendChild(this._script);
+  }
+
+  setupClickableState(google) {
+    const { selectedCountry, dispatch } = this.props;
+
+    function drawState(data) {
+      _.forEach(data['rows'], (row) => {
+        let newCoordinates = [];
+        const geometries = row[0]['geometries'];
+        if (geometries) {
+          _.forEach(geometries, (geometry) => {
+            newCoordinates.push(constructNewCoordinates(geometry));
+          });
+        } else {
+          newCoordinates = constructNewCoordinates(row[0]['geometry']);
+        }
+        const state = new google.maps.Polygon({
+          paths: newCoordinates,
+          strokeColor: '#ff9900',
+          strokeOpacity: 1,
+          strokeWeight: 0.3,
+          fillColor: '#ffff66',
+          fillOpacity: 0,
+          name: row[1],
+        });
+
+        google.maps.event.addListener(state, 'mouseover', function() {
+          this.setOptions({ fillOpacity: 0.4 });
+        });
+        google.maps.event.addListener(state, 'mouseout', function() {
+          this.setOptions({ fillOpacity: 0 });
+        });
+        google.maps.event.addListener(state, 'click', function() {
+          dispatch(mapActions.selectState(state.name));
+        });
+
+        state.setMap(google.map);
+      });
+    }
+
+    function constructNewCoordinates(polygon) {
+      return _.map(polygon['coordinates'][0], (coordinate) => {
+        return new google.maps.LatLng(coordinate[1], coordinate[0]);
+      });
+    }
+
+    window.drawState = drawState;
+
+    this._script = document.createElement('script');
+    const query = encodeURIComponent(`SELECT kml_4326, name_1 FROM 19lLpgsKdJRHL2O4fNmJ406ri9JtpIIk8a-AchA WHERE name_0 CONTAINS \'${selectedCountry}\'`);
+    this._script.src = `https://www.googleapis.com/fusiontables/v1/query?sql=${query}&callback=drawState&key=${apiKey}`;
+    document.body.appendChild(this._script);
+
+    const geocoder = new google.maps.Geocoder();
+    geocoder.geocode({ "address": selectedCountry }, (results) => {
+      google.map.setCenter(results[0].geometry.location);
+    });
   }
 
   createMapOptions() {
@@ -123,17 +194,49 @@ export default class Map extends Component {
     }
   }
 
-  render() {
-    return (
-      <div className={styles.root}>
+  renderMap() {
+    const { selectionMode } = this.props;
+
+    switch (selectionMode) {
+      case 'country': return (
         <GoogleMap
           bootstrapURLKeys={{ key: apiKey }}
-          defaultCenter={{ lat: 10, lng: 0 }}
-          defaultZoom={2}
+          center={{ lat: 0, lng: 0 }}
+          zoom={2}
           options={this.createMapOptions()}
           yesIWantToUseGoogleMapApiInternals
-          onGoogleApiLoaded={::this.setupMap}
+          onGoogleApiLoaded={::this.setupClickableCountries}
         />
+      );
+      case 'state': return (
+        <GoogleMap
+          bootstrapURLKeys={{ key: apiKey }}
+          center={{ lat: 0, lng: 0 }}
+          zoom={2}
+          options={this.createMapOptions()}
+          yesIWantToUseGoogleMapApiInternals
+          onGoogleApiLoaded={::this.setupClickableState}
+        />
+      );
+      default:
+        return (
+          <GoogleMap
+            bootstrapURLKeys={{ key: apiKey }}
+            center={{ lat: 0, lng: 0 }}
+            zoom={2}
+            options={this.createMapOptions()}
+          />
+        );
+    }
+  }
+
+  render() {
+    const { className } = this.props;
+    const mapCx = cx(styles.root, className);
+
+    return (
+      <div className={mapCx}>
+        {::this.renderMap()}
       </div>
     );
   }

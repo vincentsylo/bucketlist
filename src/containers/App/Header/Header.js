@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import HeaderLink from '../HeaderLink/HeaderLink';
+import HeaderLink from './HeaderLink/HeaderLink';
 import styles from './Header.css';
 
 const authorisedNav = ['/journey'];

@@ -9,7 +9,7 @@ export function fetchJourneys() {
   return async (dispatch) => {
     dispatch({ type: JOURNEY_FETCHING });
 
-    const response = await api.post('/auth/validate')
+    const response = await api.get('/journey/list')
       .catch((error) => {
         dispatch({ type: JOURNEY_FETCH_FAILED, error, result: null });
       });

@@ -2,8 +2,8 @@ import React, { PropTypes, Component } from 'react';
 import Helmet from 'react-helmet';
 import 'normalize.css';
 import styles from './App.css';
-import Header from '../../components/Header/Header';
-import Footer from '../../components/Footer/Footer';
+import Header from './Header/Header';
+import Footer from './Footer/Footer';
 
 export default class App extends Component {
   static propTypes = {

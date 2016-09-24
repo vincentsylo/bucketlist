@@ -5,10 +5,10 @@ import {
   JOURNEY_FETCH_FAILED,
 } from '../actions/journeyActions';
 
-export default function auth(state = {
+export default function journey(state = {
   readyState: JOURNEY_INVALID,
   error: null,
-  journeys: null,
+  journeys: [],
 }, action) {
   switch (action.type) {
     case JOURNEY_FETCHING:

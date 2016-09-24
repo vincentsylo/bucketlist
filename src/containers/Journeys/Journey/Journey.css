@@ -1,0 +1,9 @@
+.legsContainer {
+  max-height: 100px;
+  transition: max-height 0.4s ease-in-out;
+}
+
+.hidden {
+  max-height: 0;
+  overflow: hidden;
+}

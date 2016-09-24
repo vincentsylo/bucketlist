@@ -8,11 +8,11 @@ export default class Join extends Component {
     password: '',
   };
 
-  signup(e) {
-    const { email, password } = this.state;
+  async signup(e) {
     e.preventDefault();
 
-    api.post('/user/signup', { email, password });
+    const { email, password } = this.state;
+    await api.post('/user/signup', { email, password });
   }
 
   render() {

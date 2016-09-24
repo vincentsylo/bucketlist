@@ -1,21 +1,23 @@
 module.exports = (sequelize, DataTypes) => {
-  const Journey = sequelize.define('Journey', {
+  const Leg = sequelize.define('Leg', {
     id: {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV1,
       primaryKey: true,
     },
-    name: {
+    country: {
+      type: DataTypes.STRING,
+    },
+    state: {
       type: DataTypes.STRING,
     },
   }, {
     classMethods: {
       associate: (models) => {
-        Journey.hasMany(models.Leg, { as: 'legs', foreignKey: 'journeyId' });
-        Journey.belongsTo(models.User, { as: 'createdBy', foreignKey: 'userId' });
+        Leg.belongsTo(models.Journey, { as: 'journey', foreignKey: 'journeyId' });
       },
     },
   });
 
-  return Journey;
+  return Leg;
 };
