@@ -30,14 +30,6 @@ const authRouter = (server) => {
   });
 
   /**
-   * Logout
-   */
-  server.post('/api/auth/logout', (req, res) => {
-    req.logout();
-    res.redirect('/');
-  });
-
-  /**
    * Validate current user
    */
   server.post('/api/auth/validate', jwtMiddleware, (req, res) => {

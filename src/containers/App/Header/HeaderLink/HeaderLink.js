@@ -4,13 +4,18 @@ import styles from './HeaderLink.css';
 
 export default class HeaderLink extends Component {
   static propTypes = {
-    to: PropTypes.string.isRequired,
+    to: PropTypes.string,
+    onClick: PropTypes.func,
     children: PropTypes.string.isRequired,
   };
 
   render() {
-    const { to, children } = this.props;
+    const { to, onClick, children } = this.props;
 
-    return <Link to={to} className={styles.link}>{children}</Link>;
+    return onClick ? (
+      <a className={styles.link} onClick={onClick}>{children}</a>
+    ) : (
+      <Link to={to} className={styles.link}>{children}</Link>
+    );
   }
 }

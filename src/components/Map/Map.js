@@ -22,8 +22,10 @@ export default class Map extends Component {
     delete window.drawCountry;
     delete window.drawState;
 
-    ReactDOM.unmountComponentAtNode(this._script);
-    document.body.removeChild(this._script);
+    if (this._script) {
+      ReactDOM.unmountComponentAtNode(this._script);
+      document.body.removeChild(this._script);
+    }
   }
 
   setupClickableCountries(google) {

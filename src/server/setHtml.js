@@ -4,8 +4,9 @@ import configureStore from '../store/configureStore';
 import getHtml from './getHtml';
 
 module.exports = function setHtml(req, res) {
+  const store = configureStore();
   match({
-    routes: getRoutes(configureStore(), req),
+    routes: getRoutes(store, req),
     location: req.url,
   }, (error, redirectLocation, renderProps) => {
     if (error) {
@@ -13,7 +14,7 @@ module.exports = function setHtml(req, res) {
     } else if (redirectLocation) {
       res.redirect(302, `${redirectLocation.pathname}${redirectLocation.search}`);
     } else if (renderProps) {
-      getHtml(req, res, renderProps);
+      getHtml(req, res, renderProps, store);
     } else {
       res.status(404);
     }

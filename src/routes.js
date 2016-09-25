@@ -6,23 +6,26 @@ import { isClient } from './utils';
 import App from './containers/App/App';
 import Home from './containers/Home/Home';
 import Contact from './containers/Contact/Contact';
-import Map from './containers/Map/Map';
 import Login from './containers/Login/Login';
 import Join from './containers/Join/Join';
 import Journeys from './containers/Journeys/Journeys';
 
-export default (store, req, res) => {
+export default (store, req) => {
+  if (!isClient()) {
+    ReactCookie.setRawCookie(req.headers.cookie);
+  }
+
+  const setAuth = (nextState, replace, cb) => {
+    store.dispatch(authActions.fetchAuth()).then(cb);
+  };
+
   const requireLogin = (nextState, replace, cb) => {
     function checkAuth() {
       const { auth } = store.getState();
-      if (!auth.user) {
+      if (!auth.user.validated) {
         replace('/login');
       }
       cb();
-    }
-
-    if (!isClient()) {
-      ReactCookie.setRawCookie(req.headers.cookie);
     }
 
     if (store.getState().auth.readyState !== authActions.AUTH_FETCHED) {
@@ -33,11 +36,10 @@ export default (store, req, res) => {
   };
 
   return (
-    <Route path="/" component={App}>
+    <Route path="/" onEnter={setAuth} component={App}>
       <IndexRoute component={Home} />
 
       <Route path="contact" component={Contact} />
-      <Route path="map" component={Map} />
       <Route path="login" component={Login} />
       <Route path="join" component={Join} />
 

@@ -15,14 +15,14 @@ export function fetchAuth() {
       });
 
     if (response) {
-      dispatch({type: AUTH_FETCHED, result: response});
+      dispatch({ type: AUTH_FETCHED, result: response });
     }
   };
 }
 
 export function checkAuthStatus() {
   return (dispatch, getState) => {
-    if (getState().auth.user) {
+    if (getState().auth.user.validated) {
       dispatch(fetchAuth());
     }
   }

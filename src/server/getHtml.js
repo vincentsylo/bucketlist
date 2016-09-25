@@ -20,8 +20,7 @@ function renderComponentWithRoot(Component, componentProps, store) {
   return `<!doctype html>\n${renderToStaticMarkup(<Root content={componentHtml} initialState={initialState} head={head} />)}`;
 }
 
-export default function getHtml(req, res, renderProps) {
-  const store = configureStore();
+export default function getHtml(req, res, renderProps, store) {
   const status = renderProps.routes[renderProps.routes.length - 1].path === '*' ? 404 : 200;
   const readyOnAllActions = _(renderProps.components)
     .filter('readyOnActions')
