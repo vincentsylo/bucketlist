@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { browserHistory } from 'react-router'
+import { browserHistory } from 'react-router';
 import { connect } from 'react-redux';
 import ReactCookie from 'react-cookie';
 import { authActions } from '../../../store/actions';
@@ -14,6 +14,12 @@ export default class Header extends Component {
     dispatch: PropTypes.func,
     user: PropTypes.object,
   };
+
+  constructor(props) {
+    super(props);
+
+    this.handleLogout = ::this.handleLogout;
+  }
 
   async handleLogout(e) {
     e.preventDefault();
@@ -40,7 +46,7 @@ export default class Header extends Component {
           {
             validated ? (
               <div className={styles.rightColumn}>
-                <HeaderLink onClick={::this.handleLogout}>Logout</HeaderLink>
+                <HeaderLink onClick={this.handleLogout}>Logout</HeaderLink>
               </div>
             ) : (
               <div className={styles.rightColumn}>

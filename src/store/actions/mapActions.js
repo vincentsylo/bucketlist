@@ -4,6 +4,7 @@ import { journeyActions } from '../actions';
 export const MAP_ADDLEG = 'MAP_ADDLEG';
 export const MAP_SELECTCOUNTRY = 'MAP_SELECTCOUNTRY';
 export const MAP_SELECTSTATE = 'MAP_SELECTSTATE';
+export const MAP_RESET = 'MAP_RESET';
 
 export function addLeg(journey) {
   return dispatch => {
@@ -34,3 +35,8 @@ export function selectState(state) {
   };
 }
 
+export function reset() {
+  return dispatch => {
+    dispatch({ type: MAP_RESET });
+  };
+}

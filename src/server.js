@@ -49,6 +49,7 @@ require('./server/api')(server);
 server.get('*', setHtml);
 
 const models = require('./server/models');
+
 const port = process.env.PORT || 3000;
 models.sequelize.sync({ force: false }).then(() => {
   server.listen(port, (err) => {

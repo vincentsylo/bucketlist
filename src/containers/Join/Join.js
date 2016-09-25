@@ -3,6 +3,12 @@ import { api } from '../../utils';
 import styles from './Join.css';
 
 export default class Join extends Component {
+  constructor(props) {
+    super(props);
+
+    this.signup = ::this.signup;
+  }
+
   state = {
     email: '',
     password: '',
@@ -21,7 +27,7 @@ export default class Join extends Component {
         <form>
           <input type="email" onChange={(e) => this.setState({ email: e.target.value })} />
           <input type="password" onChange={(e) => this.setState({ password: e.target.value })} />
-          <button type="submit" onClick={::this.signup}>Submit</button>
+          <button type="submit" onClick={this.signup}>Submit</button>
         </form>
       </div>
     );

@@ -10,6 +10,12 @@ export default class Login extends Component {
     dispatch: PropTypes.func,
   };
 
+  constructor(props) {
+    super(props);
+
+    this.login = ::this.login;
+  }
+
   state = {
     email: '',
     password: '',
@@ -39,7 +45,7 @@ export default class Login extends Component {
           <input type="email" name="email" onChange={(e) => this.setState({ email: e.target.value })} />
           <input type="password" name="password" onChange={(e) => this.setState({ password: e.target.value })} />
           <input type="checkbox" onChange={(e) => this.setState({ rememberMe: e.target.checked })} />
-          <button type="submit" onClick={::this.login}>Submit</button>
+          <button type="submit" onClick={this.login}>Submit</button>
         </form>
       </div>
     );

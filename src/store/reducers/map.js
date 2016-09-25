@@ -2,14 +2,17 @@ import {
   MAP_ADDLEG,
   MAP_SELECTCOUNTRY,
   MAP_SELECTSTATE,
+  MAP_RESET,
 } from '../actions/mapActions';
 
-export default function map(state = {
+const initialState = {
   selectedJourney: null,
   selectedCountry: null,
   selectedState: null,
   selectionMode: '',
-}, action) {
+};
+
+export default function map(state = initialState, action) {
   switch (action.type) {
     case MAP_ADDLEG:
       return {
@@ -29,6 +32,8 @@ export default function map(state = {
         selectedState: action.state,
         selectionMode: '',
       };
+    case MAP_RESET:
+      return initialState;
     default:
       return state;
   }

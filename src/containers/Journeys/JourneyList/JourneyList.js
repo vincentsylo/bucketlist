@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { journeyActions }  from '../../../store/actions';
+import { journeyActions } from '../../../store/actions';
 import { api } from '../../../utils';
 import Journey from '../Journey/Journey';
 import styles from './JourneyList.css';
@@ -12,15 +12,21 @@ export default class JourneyList extends Component {
     journeys: PropTypes.array,
   };
 
-  state = {
-    name: '',
-  };
-
   static readyOnActions(dispatch) {
     return Promise.all([
       dispatch(journeyActions.fetchJourneys()),
     ]);
   }
+
+  constructor(props) {
+    super(props);
+
+    this.createJourney = ::this.createJourney;
+  }
+
+  state = {
+    name: '',
+  };
 
   componentDidMount() {
     JourneyList.readyOnActions(this.props.dispatch);
@@ -49,7 +55,7 @@ export default class JourneyList extends Component {
         {::this.renderList()}
         <form>
           <label><input type="text" value={name} onChange={e => this.setState({ name: e.target.value })} /></label>
-          <button type="submit" onClick={::this.createJourney}>Add</button>
+          <button type="submit" onClick={this.createJourney}>Add</button>
         </form>
       </div>
     );

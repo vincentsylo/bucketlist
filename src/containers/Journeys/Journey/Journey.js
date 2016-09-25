@@ -12,6 +12,12 @@ export default class Journey extends Component {
     journey: PropTypes.object.isRequired,
   };
 
+  constructor(props) {
+    super(props);
+
+    this.toggleShowLegs = ::this.toggleShowLegs;
+  }
+
   state = {
     showLegs: false,
   };
@@ -31,14 +37,14 @@ export default class Journey extends Component {
     });
 
     return (
-      <div className={styles.root} onClick={::this.toggleShowLegs}>
-        {name}
+      <div className={styles.root}>
+        <button onClick={this.toggleShowLegs}>{name}</button>
         <div className={legsContainer}>
           {
             legs.length > 0 ? (
               legs.map((leg, i) => <Leg key={i} leg={leg} />)
             ) : (
-              <div onClick={() => dispatch(mapActions.addLeg(journey))}>Add Origin City</div>
+              <button onClick={() => dispatch(mapActions.addLeg(journey))}>Add Origin City</button>
             )
           }
         </div>

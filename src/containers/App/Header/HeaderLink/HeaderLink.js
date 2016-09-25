@@ -12,10 +12,6 @@ export default class HeaderLink extends Component {
   render() {
     const { to, onClick, children } = this.props;
 
-    return onClick ? (
-      <a className={styles.link} onClick={onClick}>{children}</a>
-    ) : (
-      <Link to={to} className={styles.link}>{children}</Link>
-    );
+    return <Link to={to} className={styles.link} onClick={onClick}>{children}</Link>;
   }
 }
