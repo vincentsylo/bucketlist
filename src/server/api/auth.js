@@ -32,9 +32,7 @@ const authRouter = (server) => {
   /**
    * Validate current user
    */
-  server.post('/api/auth/validate', jwtMiddleware, (req, res) => {
-    return res.json({ validated: true });
-  });
+  server.post('/api/auth/validate', jwtMiddleware, (req, res) => res.json({ validated: true }));
 };
 
 module.exports = authRouter;

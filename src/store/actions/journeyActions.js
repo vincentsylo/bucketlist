@@ -15,7 +15,7 @@ export function fetchJourneys() {
       });
 
     if (response) {
-      dispatch({type: JOURNEY_FETCHED, result: response});
+      dispatch({ type: JOURNEY_FETCHED, result: response });
     }
   };
 }

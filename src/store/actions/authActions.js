@@ -25,5 +25,5 @@ export function checkAuthStatus() {
     if (getState().auth.user.validated) {
       dispatch(fetchAuth());
     }
-  }
+  };
 }

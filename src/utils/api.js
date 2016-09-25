@@ -8,7 +8,9 @@ function plugCookies(axios) {
     const cookies = reactCookie.select();
     const cookiesString = _.keys(cookies).map(k => `${k}=${cookies[k]}`).join('; ');
     if (cookiesString) {
-      axios.defaults.headers.common['Cookie'] = cookiesString;
+      axios.defaults.headers.common.Cookie = cookiesString;
+    } else {
+      delete axios.defaults.headers.common.Cookie;
     }
   }
   return axios;

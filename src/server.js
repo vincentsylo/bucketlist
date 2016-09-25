@@ -1,4 +1,4 @@
-/* eslint-disable global-require, no-console */
+/* eslint-disable no-console */
 require('babel-core/register');
 require('css-modules-require-hook/preset');
 require('babel-polyfill');
@@ -43,7 +43,9 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 require('./server/passport')(server);
+
 require('./server/api')(server);
+
 server.get('*', setHtml);
 
 const models = require('./server/models');
@@ -56,4 +58,4 @@ models.sequelize.sync({ force: false }).then(() => {
     console.info('==> 🌎 Listening on port %s. Open up http://localhost:%s/ in your browser.', port, port);
   });
 });
-/* eslint-enable global-require, no-console */
+/* eslint-enable no-console */

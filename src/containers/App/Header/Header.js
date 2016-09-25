@@ -19,7 +19,6 @@ export default class Header extends Component {
     e.preventDefault();
     const { dispatch } = this.props;
 
-    console.log('removing client side cookie');
     ReactCookie.remove('access_token');
     dispatch(authActions.fetchAuth());
     browserHistory.push('/');

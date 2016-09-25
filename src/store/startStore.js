@@ -4,4 +4,4 @@ export default (store) => {
   store.dispatch(authActions.checkAuthStatus());
 
   setInterval(() => store.dispatch(authActions.checkAuthStatus()), 60000);
-}
+};
