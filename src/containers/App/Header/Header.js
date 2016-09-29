@@ -6,7 +6,12 @@ import { authActions } from '../../../store/actions';
 import HeaderLink from './HeaderLink/HeaderLink';
 import styles from './Header.css';
 
-const authorisedNav = ['/journey'];
+const authorisedNav = [
+  {
+    url: '/trip-planner',
+    name: 'Trip Planner',
+  }
+];
 
 @connect(state => ({ user: state.auth.user }))
 export default class Header extends Component {
@@ -40,7 +45,7 @@ export default class Header extends Component {
             <nav>
               <HeaderLink to="/">Home</HeaderLink>
               <HeaderLink to="/contact">Contact</HeaderLink>
-              { validated ? authorisedNav.map((link, i) => <HeaderLink to="/journeys" key={i}>Journeys</HeaderLink>) : null }
+              { validated ? authorisedNav.map((link, i) => <HeaderLink to={link.url} key={i}>{link.name}</HeaderLink>) : null }
             </nav>
           </div>
           {

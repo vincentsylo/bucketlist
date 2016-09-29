@@ -9,6 +9,8 @@ import Contact from './containers/Contact/Contact';
 import Login from './containers/Login/Login';
 import Join from './containers/Join/Join';
 import Journeys from './containers/Journeys/Journeys';
+import TripPlanner from './containers/TripPlanner/TripPlanner';
+import TripSelector from './containers/TripSelector/TripSelector';
 
 export default (store, req) => {
   if (!isClient()) {
@@ -45,6 +47,8 @@ export default (store, req) => {
 
       <Route onEnter={requireLogin}>
         <Route path="journeys" component={Journeys} />
+        <Route path="trip-planner" component={TripSelector} />
+        <Route path="trip-planner/:tripId" component={TripPlanner} />
       </Route>
 
       <Route path="*" status={404} />

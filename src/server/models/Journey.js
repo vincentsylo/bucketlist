@@ -8,6 +8,12 @@ module.exports = (sequelize, DataTypes) => {
     name: {
       type: DataTypes.STRING,
     },
+    origin: {
+      type: DataTypes.STRING,
+    },
+    departureDate: {
+      type: DataTypes.DATE,
+    },
   }, {
     classMethods: {
       associate: (models) => {

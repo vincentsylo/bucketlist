@@ -40,11 +40,17 @@ module.exports = {
       },
       {
         test: /\.css$/,
+        exclude: /node_modules/,
         loaders: [
           'style',
           'css?modules&importLoaders=1&localIdentName=[name]_[local]_[hash:base64:3]',
           'postcss?parser=postcss-scss',
         ],
+      },
+      {
+        test: /\.css$/,
+        include: /node_modules/,
+        loader: 'style-loader!css-loader',
       },
       { test: /\.(png|jpg|jpeg|gif|svg|woff)$/, loader: 'file?name=[name].[ext]', exclude: /node_modules/ },
     ],

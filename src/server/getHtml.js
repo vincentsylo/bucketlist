@@ -23,7 +23,7 @@ export default function getHtml(req, res, renderProps, store) {
   const status = renderProps.routes[renderProps.routes.length - 1].path === '*' ? 404 : 200;
   const readyOnAllActions = _(renderProps.components)
     .filter('readyOnActions')
-    .map((component) => component.readyOnActions(store.dispatch));
+    .map((component) => component.readyOnActions(store.dispatch, renderProps));
 
   Promise
     .all(readyOnAllActions)

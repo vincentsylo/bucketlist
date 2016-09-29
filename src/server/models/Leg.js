@@ -11,6 +11,12 @@ module.exports = (sequelize, DataTypes) => {
     state: {
       type: DataTypes.STRING,
     },
+    arrivalDate: {
+      type: DataTypes.STRING,
+    },
+    arrivalMethod: {
+      type: DataTypes.STRING,
+    },
   }, {
     classMethods: {
       associate: (models) => {
