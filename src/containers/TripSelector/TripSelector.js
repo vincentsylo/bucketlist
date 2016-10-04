@@ -5,6 +5,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { api } from '../../utils';
 import { journeyActions } from '../../store/actions';
 import styles from './TripSelector.css';
+import journeyImg from '../../images/shibuya.jpg';
 
 @connect(state => ({ journeys: state.journey.journeys }))
 export default class TripSelector extends Component {
@@ -45,10 +46,20 @@ export default class TripSelector extends Component {
   }
 
   render() {
+    const { journeys } = this.props;
     const { name, origin } = this.state;
 
     return (
       <div className={styles.root}>
+        {
+          journeys.map((journey, i) => (
+            <div className={styles.journeyRoot}>
+              <img src={journeyImg} className={styles.journeyImg} />
+              {journey.name}
+            </div>
+          ))
+        }
+
         <form method="POST" onSubmit={this.createJourney}>
           <label>Name your journey <input type="text" value={name} onChange={e => this.setState({ name: e.target.value })} /></label>
           <label>Departing on <DatePicker /></label>
