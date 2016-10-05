@@ -10,7 +10,7 @@ const authorisedNav = [
   {
     url: '/trip-planner',
     name: 'Trip Planner',
-  }
+  },
 ];
 
 @connect(state => ({ user: state.auth.user }))

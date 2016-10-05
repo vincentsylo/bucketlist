@@ -33,7 +33,7 @@ const journeyRouter = (server) => {
     const { name } = req.body;
     const journey = await models.Journey.create({
       name,
-      userId: req.user.dataValues.id
+      userId: req.user.dataValues.id,
     }).catch(() => res.sendStatus(400));
 
     return res.json(journey);

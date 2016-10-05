@@ -40,7 +40,7 @@ export default class Map extends Component {
     const { dispatch } = this.props;
 
     function constructNewCoordinates(polygon) {
-      return _.map(polygon.coordinates[0], (coordinate) => new google.maps.LatLng(coordinate[1], coordinate[0]));
+      return _.map(polygon.coordinates[0], coordinate => new google.maps.LatLng(coordinate[1], coordinate[0]));
     }
 
     function drawCountry(data) {
@@ -90,7 +90,7 @@ export default class Map extends Component {
     const { selectedCountry, dispatch } = this.props;
 
     function constructNewCoordinates(polygon) {
-      return _.map(polygon.coordinates[0], (coordinate) => new google.maps.LatLng(coordinate[1], coordinate[0]));
+      return _.map(polygon.coordinates[0], coordinate => new google.maps.LatLng(coordinate[1], coordinate[0]));
     }
 
     function drawState(data) {

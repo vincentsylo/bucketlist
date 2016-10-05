@@ -7,15 +7,11 @@ export const MAP_SELECTSTATE = 'MAP_SELECTSTATE';
 export const MAP_RESET = 'MAP_RESET';
 
 export function addLeg(journey) {
-  return dispatch => {
-    dispatch({ type: MAP_ADDLEG, journey });
-  };
+  return { type: MAP_ADDLEG, journey };
 }
 
 export function selectCountry(country) {
-  return dispatch => {
-    dispatch({ type: MAP_SELECTCOUNTRY, country });
-  };
+  return { type: MAP_SELECTCOUNTRY, country };
 }
 
 export function selectState(state) {
@@ -36,7 +32,5 @@ export function selectState(state) {
 }
 
 export function reset() {
-  return dispatch => {
-    dispatch({ type: MAP_RESET });
-  };
+  return { type: MAP_RESET };
 }

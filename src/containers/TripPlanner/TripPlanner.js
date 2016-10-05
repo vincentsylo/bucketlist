@@ -8,11 +8,9 @@ export default class TripPlanner extends Component {
   static propTypes = {
     dispatch: PropTypes.func,
     journey: PropTypes.object,
-    params: PropTypes.object,
   };
 
   static readyOnActions(dispatch, props) {
-    console.log(props.params.tripId);
     return Promise.all([
       dispatch(journeyActions.fetchJourney(props.params.tripId)),
     ]);
@@ -30,6 +28,6 @@ export default class TripPlanner extends Component {
       <div className={styles.root}>
         Planner
       </div>
-    )
+    );
   }
 }

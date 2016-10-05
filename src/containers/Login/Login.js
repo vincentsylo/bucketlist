@@ -42,9 +42,9 @@ export default class Login extends Component {
     return (
       <div className={styles.root}>
         <form>
-          <input type="email" name="email" onChange={(e) => this.setState({ email: e.target.value })} />
-          <input type="password" name="password" onChange={(e) => this.setState({ password: e.target.value })} />
-          <input type="checkbox" onChange={(e) => this.setState({ rememberMe: e.target.checked })} />
+          <input type="email" name="email" onChange={e => this.setState({ email: e.target.value })} />
+          <input type="password" name="password" onChange={e => this.setState({ password: e.target.value })} />
+          <input type="checkbox" onChange={e => this.setState({ rememberMe: e.target.checked })} />
           <button type="submit" onClick={this.login}>Submit</button>
         </form>
       </div>

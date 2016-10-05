@@ -53,7 +53,7 @@ export default class TripSelector extends Component {
       <div className={styles.root}>
         {
           journeys.map((journey, i) => (
-            <div className={styles.journeyRoot}>
+            <div key={i} className={styles.journeyRoot}>
               <img src={journeyImg} className={styles.journeyImg} />
               {journey.name}
             </div>
@@ -67,6 +67,6 @@ export default class TripSelector extends Component {
           <button type="submit">Create your trip</button>
         </form>
       </div>
-    )
+    );
   }
 }

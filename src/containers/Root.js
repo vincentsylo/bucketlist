@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import assets from 'assets';
 
 export default class Root extends Component {
   static propTypes = {
@@ -27,13 +28,13 @@ export default class Root extends Component {
           {head.title.toComponent()}
           {head.meta.toComponent()}
           {head.link.toComponent()}
-          {process.env.NODE_ENV === 'production' ? <link rel="stylesheet" href="/dist/app.css" /> : null}
+          <link rel="stylesheet" href={assets.app.css} />
         </head>
         <body>
           <div id="root" dangerouslySetInnerHTML={{ __html: content }} />
           {this.renderInitialState()}
           {head.script.toComponent()}
-          {process.env.NODE_ENV === 'production' ? <script src="/dist/app.js" /> : <script src="/app.js" />}
+          <script src={assets.app.js} />
         </body>
       </html>
     );

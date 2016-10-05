@@ -1,12 +1,14 @@
 const webpack = require('webpack');
+const AssetsPlugin = require('assets-webpack-plugin');
 
 module.exports = {
-  devtool: '#cheap-module-eval-source-map',
+  devtool: 'inline-source-map',
 
   entry: {
     app: [
       'babel-polyfill',
-      'webpack-hot-middleware/client',
+      'webpack-dev-server/client?http://localhost:8080',
+      'webpack/hot/dev-server',
       './src/app.js'
     ],
   },
@@ -14,7 +16,7 @@ module.exports = {
   output: {
     publicPath: '/',
     path: '/',
-    filename: '[name].js',
+    filename: 'app/[name].js',
   },
 
   module: {
@@ -50,13 +52,13 @@ module.exports = {
       {
         test: /\.css$/,
         include: /node_modules/,
-        loader: 'style-loader!css-loader',
+        loader: 'style!css',
       },
       { test: /\.(png|jpg|jpeg|gif|svg|woff)$/, loader: 'file?name=[name].[ext]', exclude: /node_modules/ },
     ],
   },
 
-  postcss: function () {
+  postcss() {
     return [
       require('precss'),
       require('autoprefixer')({
@@ -80,9 +82,15 @@ module.exports = {
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
+    new AssetsPlugin({ path: './dist', filename: 'assets.json' }),
   ],
 
-  resolve: {
-    modulesDirectories: ['node_modules']
+  devServer: {
+    port: 8080,
+    hot: true,
+    stats: { colors: true, hash: false, timings: false, chunks: false, chunkModules: false, modules: false },
+    proxy: {
+      '**': 'http://localhost:8081',
+    },
   },
 };

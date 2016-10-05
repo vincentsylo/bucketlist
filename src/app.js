@@ -15,3 +15,5 @@ ReactDOM.render(
   document.getElementById('root'),
   startStore(store)
 );
+
+if (module.hot) module.hot.accept();

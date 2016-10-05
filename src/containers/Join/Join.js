@@ -25,8 +25,8 @@ export default class Join extends Component {
     return (
       <div className={styles.root}>
         <form>
-          <input type="email" onChange={(e) => this.setState({ email: e.target.value })} />
-          <input type="password" onChange={(e) => this.setState({ password: e.target.value })} />
+          <input type="email" onChange={e => this.setState({ email: e.target.value })} />
+          <input type="password" onChange={e => this.setState({ password: e.target.value })} />
           <button type="submit" onClick={this.signup}>Submit</button>
         </form>
       </div>
