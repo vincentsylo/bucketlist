@@ -16,6 +16,9 @@ server.use(compress());
 server.use(bodyParser.json());
 server.use(bodyParser.urlencoded({ extended: true }));
 server.use(cookieParser());
+
+server.use('/app', express.static('./dist/app'));
+
 server.get('/favicon.ico', (req, res) => {
   res.writeHead(200, { 'Content-Type': 'image/x-icon' });
   res.end();

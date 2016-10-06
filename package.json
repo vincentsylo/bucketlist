@@ -3,10 +3,10 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "build": "webpack --progress --config config/webpack.production.js",
+    "build": "npm run lint && babel-node ./config/build.js",
     "lint": "eslint src",
     "start": "babel-node ./config/start.js",
-    "start:prod": "npm run build && node src/server.js"
+    "start:prod": "npm run build && node dist/server.js"
   },
   "author": "Vincent Lo",
   "dependencies": {
@@ -58,7 +58,6 @@
     "babel-preset-react": "^6.11.1",
     "babel-preset-stage-0": "^6.5.0",
     "babel-register": "^6.14.0",
-    "copy-webpack-plugin": "^3.0.1",
     "css-loader": "^0.25.0",
     "del": "^2.2.2",
     "eslint": "^3.5.0",
@@ -69,6 +68,7 @@
     "eslint-plugin-react": "^6.2.0",
     "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^0.9.0",
+    "fs-extra": "^0.30.0",
     "isomorphic-style-loader": "^1.0.0",
     "json-loader": "^0.5.4",
     "node-sass": "^3.10.0",
