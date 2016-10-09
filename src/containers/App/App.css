@@ -3,10 +3,9 @@ body {
 }
 
 .root {
+  font-size: 14px;
+  font-family: 'Nunito', sans-serif;
 }
 
 .page {
-  margin: 0 auto;
-  max-width: 1024px;
-  padding: 1em 2em;
 }

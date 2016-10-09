@@ -30,11 +30,11 @@ module.exports = {
           plugins: [
             [
               'react-transform', {
-              transforms: [
-                { transform: 'react-transform-hmr', imports: ['react'], locals: ['module'] },
-                { transform: 'react-transform-catch-errors', imports: ['react', 'redbox-react'] },
-              ],
-            },
+                transforms: [
+                  { transform: 'react-transform-hmr', imports: ['react'], locals: ['module'] },
+                  { transform: 'react-transform-catch-errors', imports: ['react', 'redbox-react'] },
+                ],
+              },
             ],
             'transform-decorators-legacy',
           ],

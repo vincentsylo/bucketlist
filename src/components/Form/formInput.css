@@ -1,0 +1,38 @@
+.root {
+  width: 100%;
+}
+
+.label {
+  color: $primaryFont;
+  display: block;
+  font-weight: 500;
+  margin: 0 0 .4em;
+}
+
+.input {
+  border: 1px solid #f3f3f3;
+  box-sizing: border-box;
+  display: inline-block;
+  margin: 0 0 1.2em;
+  padding: 0.5em 1em 0.5em 0.5em;
+  width: 100%;
+}
+
+.input.required {
+  border: 1px solid $danger;
+}
+
+.inputContainer {
+  position: relative;
+}
+
+.requiredIcon::before {
+  content: '*';
+}
+
+.requiredIcon {
+  color: $danger;
+  position: absolute;
+  right: 3px;
+  top: 11px;
+}

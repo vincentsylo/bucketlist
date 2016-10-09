@@ -5,7 +5,6 @@
     "react"
   ],
   "plugins": [
-    "transform-decorators-legacy",
-    "transform-regenerator"
+    "transform-decorators-legacy"
   ]
 }

@@ -1,17 +1,17 @@
-.journeyRoot {
-  background-color: #fff;
-  box-shadow: 1px 1px 10px 0px rgba(0,0,0,0.75);
-  padding: 10px;
-  width: 300px;
-
-  &:hover {
-    background-color: $secondary;
-    color: #fff;
-    cursor: pointer;
-  }
+.root {
+  flex-direction: column;
 }
 
-.journeyImg {
+.journeyRoot {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.addFlex {
+  flex: 1;
+  width: auto;
+}
+
+.addFull {
   width: 100%;
 }
-
