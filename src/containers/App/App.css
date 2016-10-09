@@ -1,11 +1,16 @@
 body {
-  background-color: $primary;
+  background-color: #fff;
 }
 
 .root {
+  display: flex;
+  flex-direction: column;
   font-size: 14px;
   font-family: 'Nunito', sans-serif;
+  min-height: 100vh;
 }
 
 .page {
+  flex: 1;
+  position: relative;
 }

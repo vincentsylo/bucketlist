@@ -29,6 +29,7 @@ export default class Root extends Component {
           {head.meta.toComponent()}
           {head.link.toComponent()}
           <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" />
+          <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" />
           <link rel="stylesheet" href={assets.app.css} />
         </head>
         <body>

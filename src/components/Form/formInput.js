@@ -6,14 +6,15 @@ export default () => (
   WrappedComponent => (
     class formInput extends Component {
       static propTypes = {
-        label: PropTypes.string.isRequired,
+        label: PropTypes.string,
+        icon: PropTypes.string,
         required: PropTypes.bool,
         showValidation: PropTypes.bool,
-        value: PropTypes.string,
+        value: PropTypes.any,
       };
 
       render() {
-        const { label, required, value, showValidation, ...rest } = this.props;
+        const { label, required, value, showValidation, icon, ...rest } = this.props;
         const inputClassName = cx(styles.input, {
           [styles.required]: required && !value && showValidation,
         });
@@ -29,6 +30,7 @@ export default () => (
                 {...rest}
               />
               { required ? <span className={styles.requiredIcon} /> : null }
+              { icon ? <span className={cx(styles.icon, icon)} /> : null }
             </div>
           </div>
         );

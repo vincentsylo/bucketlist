@@ -35,7 +35,12 @@ export default class TripSelector extends Component {
       <div className={styles.root}>
         <div className={styles.journeyRoot}>
           {
-            journeys.map((journey, i) => <Trip journey={journey} key={i} />)
+            journeys.length > 0 ?
+              journeys.map((journey, i) => <Trip journey={journey} key={i} />) : (
+                <div className={styles.noJourneys}>
+                  test
+                </div>
+              )
           }
           <AddTrip className={addCls} fetchJourneys={() => TripSelector.readyOnActions(dispatch)} />
         </div>

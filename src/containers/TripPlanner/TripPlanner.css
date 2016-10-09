@@ -1,0 +1,24 @@
+.root {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  position: absolute;
+  width: 100%;
+}
+
+.column {
+  background-color: #fff;
+  overflow-y: auto;
+}
+
+.left {
+  width: 320px;
+}
+
+.center {
+  flex: 1;
+}
+
+.right {
+  width: 240px;
+}

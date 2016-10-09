@@ -1,8 +1,9 @@
 module.exports = {
-  primary: '#22252C',
-  secondary: '#3F3250',
-  notice: '#E14658',
-  action: '#C0B3A0',
+  primary: '#151515',
+  secondary: '#A63D40',
+  accent: '#90A959',
+  action: '#E9B872',
+  highlight: '#6494AA',
 
   primaryFont: '#333',
   secondaryFont: '#fff',

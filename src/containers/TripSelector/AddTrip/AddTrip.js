@@ -25,7 +25,7 @@ export default class AddTrip extends Component {
     showValidation: false,
     name: '',
     origin: '',
-    date: moment(),
+    departureDate: moment(),
   };
 
   showValidation() {
@@ -38,12 +38,12 @@ export default class AddTrip extends Component {
     e.preventDefault();
 
     const { fetchJourneys } = this.props;
-    const { name, origin, date } = this.state;
+    const { name, origin, departureDate } = this.state;
 
-    if (name && date && origin) {
-      await api.post('/journey/create', { name });
+    if (name && departureDate && origin) {
+      await api.post('/journey/create', { name, origin, departureDate });
 
-      this.setState({ name: '', date: moment(), origin: '' });
+      this.setState({ name: '', departureDate: moment(), origin: '' });
       fetchJourneys();
     } else {
       this.showValidation();
@@ -60,7 +60,7 @@ export default class AddTrip extends Component {
 
   render() {
     const { className } = this.props;
-    const { showForm, name, date, origin, showValidation } = this.state;
+    const { showForm, name, departureDate, origin, showValidation } = this.state;
     const rootCls = cx(styles.root, className);
     const formCls = cx(styles.content, {
       [styles.showForm]: showForm,
@@ -90,8 +90,8 @@ export default class AddTrip extends Component {
                 />
                 <DateInput
                   label="Departing on"
-                  value={date}
-                  onChange={newDate => this.setState({ date: newDate })}
+                  value={departureDate}
+                  onChange={date => this.setState({ departureDate: date })}
                   required
                   showValidation={showValidation}
                 />

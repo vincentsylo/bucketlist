@@ -15,3 +15,7 @@
 .addFull {
   width: 100%;
 }
+
+.noJourneys {
+  flex: 1;
+}

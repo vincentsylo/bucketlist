@@ -30,9 +30,11 @@ const journeyRouter = (server) => {
    * Create journey
    */
   server.post('/api/journey/create', jwtMiddleware, async (req, res) => {
-    const { name } = req.body;
+    const { name, origin, departureDate } = req.body;
     const journey = await models.Journey.create({
       name,
+      origin,
+      departureDate,
       userId: req.user.dataValues.id,
     }).catch(() => res.sendStatus(400));
 

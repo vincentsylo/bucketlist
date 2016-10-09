@@ -1,0 +1,16 @@
+.root {
+  background-color: $highlight;
+  color: #fff;
+  display: block;
+  padding: 0.5em;
+}
+
+.originRoot {
+  background-color: $accent;
+}
+
+.destination,
+.date {
+  display: block;
+  margin: 0.5em;
+}

@@ -1,6 +1,7 @@
 .root {
-  background-color: $primary;
-  color: $secondaryFont;
+  background-color: #fff;
+  border-top: 1px solid #ddd;
+  color: $primaryFont;
   padding: 2em 1em;
   text-align: center;
 }
