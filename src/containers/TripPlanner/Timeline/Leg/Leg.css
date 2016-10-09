@@ -1,16 +1,33 @@
 .root {
-  background-color: $highlight;
-  color: #fff;
-  display: block;
-  padding: 0.5em;
-}
-
-.originRoot {
-  background-color: $accent;
+  margin-bottom: 4em;
+  position: relative;
 }
 
 .destination,
 .date {
   display: block;
   margin: 0.5em;
+}
+
+.content {
+  background-color: $highlight;
+  color: #fff;
+  display: block;
+  padding: 0.5em;
+  position: relative;
+  z-index: 2;
+}
+
+.originContent {
+  background-color: $accent;
+}
+
+.verticalLine {
+  border-left: 3px dotted black;
+  height: 100%;
+  left: 50%;
+  padding-bottom: 4em;
+  position: absolute;
+  top: 0;
+  z-index: 1;
 }

@@ -14,14 +14,17 @@ export default class Leg extends Component {
     const { leg, originLeg } = this.props;
     const isOrigin = _.size(originLeg) > 0;
     const displayLeg = originLeg || leg;
-    const rootCls = cx(styles.root, {
-      [styles.originRoot]: isOrigin,
+    const contentCls = cx(styles.content, {
+      [styles.originContent]: isOrigin,
     });
 
     return (
-      <div className={rootCls}>
-        <span className={styles.destination}>{displayLeg.destination}</span>
-        <span className={styles.date}>{moment(displayLeg.departureDate).format('YYYY-MM-DD')}</span>
+      <div className={styles.root}>
+        <div className={contentCls}>
+          <span className={styles.destination}>{displayLeg.destination}</span>
+          <span className={styles.date}>{moment(displayLeg.departureDate).format('YYYY-MM-DD')}</span>
+        </div>
+        <div className={styles.verticalLine} />
       </div>
     );
   }
