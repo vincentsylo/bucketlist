@@ -15,10 +15,8 @@
   width: 320px;
 }
 
-.center {
+.main {
+  background-color: #F8F8F9;
   flex: 1;
 }
 
-.right {
-  width: 240px;
-}

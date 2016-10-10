@@ -31,3 +31,7 @@
   top: 0;
   z-index: 1;
 }
+
+.verticalLine.origin {
+  border-left: none;
+}

@@ -4,7 +4,6 @@ import cx from 'classnames';
 import { journeyActions } from '../../store/actions';
 import Timeline from './Timeline/Timeline';
 import Planner from './Planner/Planner';
-import Activities from './Activities/Activities';
 import styles from './TripPlanner.css';
 
 @connect(state => ({ journey: state.journey.selectedJourney }))
@@ -29,9 +28,8 @@ export default class TripPlanner extends Component {
 
     return (
       <div className={styles.root}>
-        <div className={cx(styles.left, styles.column)}><Timeline title="Timeline" journey={journey} /></div>
-        <div className={cx(styles.center, styles.column)}><Planner title="Planner" /></div>
-        <div className={cx(styles.right, styles.column)}><Activities title="Activities" /></div>
+        <div className={cx(styles.left, styles.column)}><Timeline journey={journey} /></div>
+        <div className={cx(styles.main, styles.column)}><Planner journey={journey} /></div>
       </div>
     );
   }
