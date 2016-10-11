@@ -1,9 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import template from '../template';
-import TutorialList from '../../../components/Tutorial/TutorialList';
+import CallToAction from '../../../components/CallToAction/CallToAction';
+import AddLeg from '../AddLeg/AddLeg';
 import styles from './Planner.css';
-
-const newTripTutorial = [1, 2, 3];
 
 @template()
 export default class Planner extends Component {
@@ -14,10 +13,19 @@ export default class Planner extends Component {
   render() {
     const { journey } = this.props;
 
-    return (
+    return journey ? (
       <div className={styles.root}>
-        {journey.legs.length === 0 ? <TutorialList tutorials={newTripTutorial} /> : null}
+        {
+          journey.legs.length === 0 ? (
+            <CallToAction title="Getting started" className={styles.callToAction}>
+              <div>
+                <div className={styles.content}>Create your first leg of your trip!</div>
+                <AddLeg journeyId={journey.id} />
+              </div>
+            </CallToAction>
+          ) : null
+        }
       </div>
-    );
+    ) : null;
   }
 }

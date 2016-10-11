@@ -8,7 +8,10 @@ module.exports = (sequelize, DataTypes) => {
     name: {
       type: DataTypes.STRING,
     },
-    origin: {
+    originCountry: {
+      type: DataTypes.STRING,
+    },
+    originState: {
       type: DataTypes.STRING,
     },
     departureDate: {

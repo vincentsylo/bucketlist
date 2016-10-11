@@ -1,33 +1,37 @@
 import React, { Component, PropTypes } from 'react';
 import moment from 'moment';
 import _ from 'lodash';
-import cx from 'classnames';
+import { connect } from 'react-redux';
+import { plannerActions } from '../../../../store/actions';
 import styles from './Leg.css';
 
+@connect(state => ({ selectedLeg: state.planner.selectedLeg }))
 export default class Leg extends Component {
   static propTypes = {
+    dispatch: PropTypes.func.isRequired,
     leg: PropTypes.object,
     originLeg: PropTypes.object,
+    selectedLeg: PropTypes.object,
   };
 
   render() {
-    const { leg, originLeg } = this.props;
-    const isOrigin = _.size(originLeg) > 0;
+    const { dispatch, leg, originLeg, selectedLeg } = this.props;
     const displayLeg = originLeg || leg;
-    const contentCls = cx(styles.content, {
-      [styles.originContent]: isOrigin,
-    });
-    const verticalLineCls = cx(styles.verticalLine, {
-      [styles.origin]: isOrigin,
-    });
 
     return (
-      <div className={styles.root}>
-        <div className={contentCls}>
-          <span className={styles.destination}>{displayLeg.destination}</span>
-          <span className={styles.date}>{moment(displayLeg.departureDate || displayLeg.arrivalDate).format('YYYY-MM-DD')}</span>
+      <div className={styles.root} onClick={() => dispatch(plannerActions.selectLeg(leg))}>
+        <div className={styles.content}>
+          <div className={styles.date}>
+            <div>{moment(displayLeg.departureDate || displayLeg.arrivalDate).format('MMM DD')}</div>
+            <div>{moment(displayLeg.departureDate || displayLeg.arrivalDate).format('YYYY')}</div>
+          </div>
+          <div className={styles.destination}>
+            <div>{displayLeg.originState || displayLeg.destinationState}</div>
+            <div>{displayLeg.originCountry || displayLeg.destinationCountry}</div>
+          </div>
+          { _.isEqual(leg, selectedLeg) ? <div className={styles.selected} /> : null }
         </div>
-        <div className={verticalLineCls} />
+        <div className={styles.verticalLine} />
       </div>
     );
   }

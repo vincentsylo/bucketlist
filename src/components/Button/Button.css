@@ -1,12 +1,12 @@
 .root {
   border: none;
-  background-color: $highlight;
+  background-color: $action;
   color: #fff;
   height: 3em;
   width: 100%;
 }
 
 .root:hover {
-  background-color: color(#6494AA shade(10%));
+  background-color: color(#2dbe60 lightness(40%));
   cursor: pointer;
 }

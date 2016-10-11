@@ -3,14 +3,20 @@ body {
 }
 
 .root {
+  color: $primaryFont;
   display: flex;
   flex-direction: column;
   font-size: 14px;
   font-family: 'Nunito', sans-serif;
   min-height: 100vh;
+  min-width: 1024px;
 }
 
 .page {
   flex: 1;
   position: relative;
+}
+
+:global .react-datepicker__input-container {
+  width: 100%;
 }

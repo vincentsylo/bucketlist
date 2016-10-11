@@ -1,0 +1,17 @@
+.root {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.title {
+  color: $titleFont;
+  font-size: 16px;
+  font-weight: 400;
+  margin: 10px 0;
+}
+
+.content {
+
+}

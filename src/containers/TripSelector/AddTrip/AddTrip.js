@@ -24,7 +24,8 @@ export default class AddTrip extends Component {
     showForm: false,
     showValidation: false,
     name: '',
-    origin: '',
+    originCountry: '',
+    originState: '',
     departureDate: moment(),
   };
 
@@ -38,12 +39,12 @@ export default class AddTrip extends Component {
     e.preventDefault();
 
     const { fetchJourneys } = this.props;
-    const { name, origin, departureDate } = this.state;
+    const { name, originCountry, originState, departureDate } = this.state;
 
-    if (name && departureDate && origin) {
-      await api.post('/journey/create', { name, origin, departureDate });
+    if (name && originCountry && originState && departureDate) {
+      await api.post('/journey/create', { name, originCountry, originState, departureDate });
 
-      this.setState({ name: '', departureDate: moment(), origin: '' });
+      this.setState({ name: '', originCountry: '', originState: '', departureDate: moment() });
       fetchJourneys();
     } else {
       this.showValidation();
@@ -60,7 +61,7 @@ export default class AddTrip extends Component {
 
   render() {
     const { className } = this.props;
-    const { showForm, name, departureDate, origin, showValidation } = this.state;
+    const { showForm, name, originCountry, originState, departureDate, showValidation } = this.state;
     const rootCls = cx(styles.root, className);
     const formCls = cx(styles.content, {
       [styles.showForm]: showForm,
@@ -71,9 +72,10 @@ export default class AddTrip extends Component {
         <div className={formCls}>
           {
             showForm ? (
-              <form method="POST" onSubmit={this.createJourney}>
+              <form method="POST" onSubmit={this.createJourney} className={styles.form}>
                 <TextInput
                   label="Name your trip"
+                  labelStyle={styles.label}
                   placeholder="Around the world"
                   value={name}
                   onChange={e => this.setState({ name: e.target.value })}
@@ -81,21 +83,32 @@ export default class AddTrip extends Component {
                   showValidation={showValidation}
                 />
                 <TextInput
-                  label="Origin city"
-                  placeholder="Sydney, Australia"
-                  value={origin}
-                  onChange={e => this.setState({ origin: e.target.value })}
+                  label="Origin country"
+                  labelStyle={styles.label}
+                  placeholder="Australia"
+                  value={originCountry}
+                  onChange={e => this.setState({ originCountry: e.target.value })}
+                  required
+                  showValidation={showValidation}
+                />
+                <TextInput
+                  label="Origin state"
+                  labelStyle={styles.label}
+                  placeholder="Sydney"
+                  value={originState}
+                  onChange={e => this.setState({ originState: e.target.value })}
                   required
                   showValidation={showValidation}
                 />
                 <DateInput
                   label="Departing on"
+                  labelStyle={styles.label}
                   value={departureDate}
                   onChange={date => this.setState({ departureDate: date })}
                   required
                   showValidation={showValidation}
                 />
-                <Button type="submit">Create your trip</Button>
+                <Button type="submit" className={styles.submit}>Create your trip</Button>
               </form>
             ) : (
               <span className={styles.title}>Create new trip</span>

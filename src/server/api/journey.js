@@ -9,7 +9,10 @@ const journeyRouter = (server) => {
     const journeys = await models.Journey.findAll({
       where: { userId: req.user.dataValues.id },
       include: [{ model: models.Leg, as: 'legs' }],
-    }).catch(() => res.sendStatus(400));
+    }).catch((e) => {
+      console.log(e);
+      return res.sendStatus(400)
+    });
 
     return res.json(journeys);
   });
@@ -30,10 +33,11 @@ const journeyRouter = (server) => {
    * Create journey
    */
   server.post('/api/journey/create', jwtMiddleware, async (req, res) => {
-    const { name, origin, departureDate } = req.body;
+    const { name, originCountry, originState, departureDate } = req.body;
     const journey = await models.Journey.create({
       name,
-      origin,
+      originCountry,
+      originState,
       departureDate,
       userId: req.user.dataValues.id,
     }).catch(() => res.sendStatus(400));

@@ -10,7 +10,7 @@
 
   &:hover {
    background-color: $secondary;
-   color: $secondaryFont;
+   color: $lightFont;
    cursor: pointer;
  }
 }

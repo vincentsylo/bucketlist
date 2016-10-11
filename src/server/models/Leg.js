@@ -5,10 +5,10 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue: DataTypes.UUIDV1,
       primaryKey: true,
     },
-    country: {
+    destinationCountry: {
       type: DataTypes.STRING,
     },
-    state: {
+    destinationState: {
       type: DataTypes.STRING,
     },
     arrivalDate: {

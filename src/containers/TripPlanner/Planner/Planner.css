@@ -2,3 +2,15 @@
   position: relative;
   height: 100%;
 }
+
+.content {
+  padding-bottom: 0.3em;
+}
+
+.callToAction {
+  left: 0;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}

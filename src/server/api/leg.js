@@ -6,12 +6,12 @@ const legRouter = (server) => {
    * Create leg
    */
   server.post('/api/leg/create', jwtMiddleware, async (req, res) => {
-    const { journeyId, country, state, arrivalDate } = req.body;
+    const { journeyId, destinationCountry, destinationState, arrivalDate } = req.body;
     const leg = await models.Leg.create({
       userId: req.user.dataValues.id,
       journeyId,
-      country,
-      state,
+      destinationCountry,
+      destinationState,
       arrivalDate,
     });
 

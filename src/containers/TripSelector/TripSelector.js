@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import cx from 'classnames';
+import CallToAction from '../../components/CallToAction/CallToAction';
 import { journeyActions } from '../../store/actions';
 import styles from './TripSelector.css';
 import Trip from './Trip/Trip';
@@ -38,7 +39,9 @@ export default class TripSelector extends Component {
             journeys.length > 0 ?
               journeys.map((journey, i) => <Trip journey={journey} key={i} />) : (
                 <div className={styles.noJourneys}>
-                  test
+                  <CallToAction title="Create your first trip!">
+                    <div>You can create as may trips as you like.</div>
+                  </CallToAction>
                 </div>
               )
           }

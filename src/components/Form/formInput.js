@@ -7,6 +7,7 @@ export default () => (
     class formInput extends Component {
       static propTypes = {
         label: PropTypes.string,
+        labelStyle: PropTypes.string,
         icon: PropTypes.string,
         required: PropTypes.bool,
         showValidation: PropTypes.bool,
@@ -14,14 +15,14 @@ export default () => (
       };
 
       render() {
-        const { label, required, value, showValidation, icon, ...rest } = this.props;
+        const { label, labelStyle, required, value, showValidation, icon, ...rest } = this.props;
         const inputClassName = cx(styles.input, {
           [styles.required]: required && !value && showValidation,
         });
 
         return (
           <div className={styles.root}>
-            <label htmlFor={styles.root} className={styles.label}>{label}</label>
+            <label htmlFor={styles.root} className={cx(styles.label, labelStyle)}>{label}</label>
             <div className={styles.inputContainer}>
               <WrappedComponent
                 id={styles.root}
