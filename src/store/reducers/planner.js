@@ -6,7 +6,7 @@ const initialState = {
   selectedLeg: null,
 };
 
-export default function map(state = initialState, action) {
+export default function planner(state = initialState, action) {
   switch (action.type) {
     case LEG_SELECT:
       return {

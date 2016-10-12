@@ -51,7 +51,7 @@ export default class AddLeg extends Component {
 
     if (destinationCountry && destinationState && arrivalDate) {
       await api.post('/leg/create', { destinationCountry, destinationState, arrivalDate, journeyId });
-      this.setState({ destinationCountry: '', destinationState: '', arrivalDate: moment() });
+      this.setState({ destinationCountry: '', destinationState: '', arrivalDate: moment(), showForm: false });
       dispatch(journeyActions.fetchJourney(journeyId));
     } else {
       this.showValidation();

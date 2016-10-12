@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import { api } from '../../utils';
 
 export const AUTH_INVALID = 'AUTH_INVALID';
@@ -22,7 +23,7 @@ export function fetchAuth() {
 
 export function checkAuthStatus() {
   return (dispatch, getState) => {
-    if (getState().auth.user.validated) {
+    if (_.get(getState(), 'auth.user.validated')) {
       dispatch(fetchAuth());
     }
   };

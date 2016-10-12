@@ -15,17 +15,19 @@ export default class Timeline extends Component {
     const { journey } = this.props;
 
     if (journey) {
-      const {legs, originCountry, originState, departureDate} = journey;
+      const { legs, originCountry, originState, departureDate } = journey;
       const originLeg = {
         originState,
         originCountry,
         departureDate,
+        isOrigin: true,
       };
 
       return (
         <div className={styles.root}>
-          <Leg originLeg={originLeg}/>
-          {_.map(legs, leg => <Leg leg={leg} key={leg.id}/>)}
+          <div className={styles.origin} />
+          <Leg originLeg={originLeg} enableBookings={legs.length > 0} />
+          {legs.map((leg, i) => <Leg leg={leg} key={leg.id} enableBookings={i !== legs.length - 1} />)}
           <AddLeg journeyId={journey.id} />
         </div>
       );

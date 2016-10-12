@@ -3,14 +3,26 @@
   position: relative;
 }
 
-.root:hover {
-  cursor: pointer;
+.root.isOrigin {
+  padding-top: 4em;
 }
 
 .destination,
-.date {
+.date,
+.actions {
   display: inline-block;
   margin: 0.5em;
+}
+
+.destination,
+.actions {
+  flex: 1;
+}
+
+.destination {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .date {
@@ -20,41 +32,26 @@
 .content {
   background-color: $secondary;
   color: #fff;
-  display: block;
+  display: flex;
   padding: 0.5em;
   position: relative;
   z-index: 0;
 }
 
+.content:hover {
+  cursor: pointer;
+}
+
 .verticalLine {
   border-left: 3px solid $action;
   height: 100%;
-  left: 19.5%;
+  left: 4.5em;
   padding-bottom: 4em;
   position: absolute;
   top: 0;
   z-index: 1;
 }
 
-.selected::after,
-.selected::before {
-  border-style: solid;
-  content: '';
-  display: block;
-  height: 0;
-  position: absolute;
-  right: 0;
-  width: 0;
-}
-
-.selected::after {
-  border-color: transparent #F8F8F9 transparent transparent;
-  border-width: 26px;
-  top: 4px;
-}
-
-.selected::before {
-  border-color: transparent #F8F8F9 transparent transparent;
-  border-width: 30px;
-  top: 0;
+.content.selected {
+  background-color: $action;
 }
