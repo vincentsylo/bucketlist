@@ -11,7 +11,7 @@ const journeyRouter = (server) => {
       include: [{ model: models.Leg, as: 'legs' }],
     }).catch((e) => {
       console.log(e);
-      return res.sendStatus(400)
+      return res.sendStatus(400);
     });
 
     return res.json(journeys);

@@ -1,7 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
+import cx from 'classnames';
+import _ from 'lodash';
 import template from '../template';
-import CallToAction from '../../../components/CallToAction/CallToAction';
+import { Button, CallToAction } from '../../../components';
+import Activities from './Activities/Activities';
 import AddLeg from '../AddLeg/AddLeg';
 import styles from './Planner.css';
 
@@ -13,6 +16,29 @@ export default class Planner extends Component {
     selectedLeg: PropTypes.object,
   };
 
+  state = {
+    selectedTab: 'activities',
+  };
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props.selectedLeg !== nextProps.selectedLeg) {
+      this.setState({ selectedTab: 'activities' });
+    }
+  }
+
+  selectTab(tab) {
+    this.setState({ selectedTab: tab });
+  }
+
+  getButtonProps(type) {
+    const { selectedTab } = this.state;
+
+    return {
+      className: cx(styles.tabTitle, { [styles.selected]: selectedTab === type }),
+      onClick: () => this.selectTab(type),
+    };
+  }
+
   renderCallToAction() {
     const { journey, selectedLeg } = this.props;
 
@@ -21,7 +47,7 @@ export default class Planner extends Component {
         <CallToAction title="Getting started" className={styles.callToAction}>
           <div>
             <div className={styles.content}>Create your first leg of your trip!</div>
-            <AddLeg journeyId={journey.id} />
+            <AddLeg journey={journey} />
           </div>
         </CallToAction>
       );
@@ -38,12 +64,38 @@ export default class Planner extends Component {
     return null;
   }
 
+  renderOptions() {
+    const { selectedLeg } = this.props;
+    const { selectedTab } = this.state;
+
+    return !selectedLeg.isOrigin ? (
+      <div className={styles.tabs}>
+        <div className={styles.tabTitles}>
+          <Button {...this.getButtonProps('activities')}>
+            Activities
+          </Button>
+          <Button {...this.getButtonProps('Getting here')} disabled={!selectedLeg.enableTransport}>
+            Getting here
+          </Button>
+          <Button {...this.getButtonProps('hotels')} disabled={!selectedLeg.enableHotels}>
+            Hotels
+          </Button>
+        </div>
+        <div className={styles.tabContainer}>
+          <Activities selected={selectedTab === 'activities'} />
+        </div>
+      </div>
+    ) : (
+      <div>Origin</div>
+    );
+  }
+
   render() {
-    const { journey } = this.props;
+    const { journey} = this.props;
 
     return journey ? (
       <div className={styles.root}>
-        {::this.renderCallToAction()}
+        {::this.renderCallToAction() || ::this.renderOptions()}
       </div>
     ) : null;
   }

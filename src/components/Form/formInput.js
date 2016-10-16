@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import cx from 'classnames';
+import _ from 'lodash';
 import styles from './formInput.css';
 
 export default () => (
@@ -19,13 +20,14 @@ export default () => (
         const inputClassName = cx(styles.input, {
           [styles.required]: required && !value && showValidation,
         });
+        const id = _.uniqueId();
 
         return (
           <div className={styles.root}>
-            <label htmlFor={styles.root} className={cx(styles.label, labelStyle)}>{label}</label>
+            <label htmlFor={id} className={cx(styles.label, labelStyle)}>{label}</label>
             <div className={styles.inputContainer}>
               <WrappedComponent
-                id={styles.root}
+                id={id}
                 className={inputClassName}
                 value={value}
                 {...rest}

@@ -131,7 +131,7 @@ export default class Map extends Component {
     window.drawState = drawState;
 
     this._script = document.createElement('script');
-    const query = encodeURIComponent(`SELECT kml_4326, name_1 FROM 19lLpgsKdJRHL2O4fNmJ406ri9JtpIIk8a-AchA WHERE name_0 CONTAINS \'${selectedCountry}\'`);
+    const query = encodeURIComponent(`SELECT kml_4326, name_1 FROM 19lLpgsKdJRHL2O4fNmJ406ri9JtpIIk8a-AchA WHERE name_0 CONTAINS '${selectedCountry}'`);
     this._script.src = `https://www.googleapis.com/fusiontables/v1/query?sql=${query}&callback=drawState&key=${apiKey}`;
     document.body.appendChild(this._script);
 

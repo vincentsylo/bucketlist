@@ -1,4 +1,6 @@
 .root {
+  display: flex;
+  flex-flow: row wrap;
   position: relative;
   height: 100%;
 }
@@ -13,4 +15,29 @@
   position: absolute;
   top: 0;
   width: 100%;
+}
+
+.tabs {
+  width: 100%;
+}
+
+.tabTitles {
+  display: flex;
+}
+
+.tabTitle {
+  display: inline-block;
+  flex: 1;
+  font-size: 18px;
+  text-align: center;
+}
+
+.tabTitle:focus {
+  outline: none;
+}
+
+.tabTitle.selected {
+  background-color: transparent;
+  color: #333;
+  font-weight: 700;
 }

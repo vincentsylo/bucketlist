@@ -10,40 +10,49 @@ import styles from './Leg.css';
 export default class Leg extends Component {
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
-    enableBookings: PropTypes.bool,
     leg: PropTypes.object,
-    originLeg: PropTypes.object,
     selectedLeg: PropTypes.object,
   };
 
   render() {
-    const { dispatch, enableBookings, leg, originLeg, selectedLeg } = this.props;
-    const displayLeg = originLeg || leg;
-    const isOrigin = displayLeg.isOrigin;
+    const { dispatch, leg, selectedLeg } = this.props;
 
     const rootCls = cx(styles.root, {
-      [styles.isOrigin]: isOrigin,
+      [styles.isOrigin]: leg.isOrigin,
     });
     const contentCls = cx(styles.content, {
-      [styles.selected]: _.isEqual(displayLeg, selectedLeg),
+      [styles.selected]: _.isEqual(leg, selectedLeg),
+    });
+    const transportCls = cx(styles.icon, {
+      [styles.enabled]: leg.enableTransport,
+    });
+    const hotelsCls = cx(styles.icon, {
+      [styles.enabled]: leg.enableHotels,
     });
 
     return (
       <div className={rootCls}>
-        <div className={contentCls} onClick={() => dispatch(plannerActions.selectLeg(displayLeg))}>
+        <div className={contentCls} onClick={() => dispatch(plannerActions.selectLeg(leg))}>
           <div className={styles.date}>
-            <div>{moment(displayLeg.departureDate || displayLeg.arrivalDate).format('MMM DD')}</div>
-            <div>{moment(displayLeg.departureDate || displayLeg.arrivalDate).format('YYYY')}</div>
+            <div>{moment(leg.date).format('MMM DD')}</div>
+            <div>{moment(leg.date).format('YYYY')}</div>
           </div>
           <div className={styles.destination}>
-            <div>{displayLeg.originState || displayLeg.destinationState}</div>
-            <div>{displayLeg.originCountry || displayLeg.destinationCountry}</div>
+            <div>{leg.state}</div>
+            <div>{leg.country}</div>
           </div>
           <div className={styles.actions}>
-            { enableBookings ? 'bookings' : null }
+            <div className={transportCls}>
+              <span className="fa fa-plane" />
+              { leg.enableTransport ? <div className={cx(styles.verticalLine, styles.flight)} /> : null }
+            </div>
+            <div className={hotelsCls}>
+              <span className="fa fa-bed" />
+              { leg.enableHotels ? <div className={cx(styles.verticalLine, styles.hotels)} /> : null }
+            </div>
           </div>
         </div>
-        <div className={styles.verticalLine} />
+        <div className={cx(styles.verticalLine, styles.default)} />
       </div>
     );
   }

@@ -8,14 +8,18 @@
 }
 
 .destination,
-.date,
-.actions {
+.date {
   display: inline-block;
   margin: 0.5em;
 }
 
-.destination,
 .actions {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+}
+
+.destination {
   flex: 1;
 }
 
@@ -43,15 +47,41 @@
 }
 
 .verticalLine {
-  border-left: 3px solid $action;
   height: 100%;
-  left: 4.5em;
-  padding-bottom: 4em;
   position: absolute;
-  top: 0;
   z-index: 1;
+}
+
+.verticalLine.default {
+  border-left: 3px solid $action;
+  left: 4.4em;
+  padding-bottom: 4em;
+  top: 0;
+}
+
+.verticalLine.flight {
+  border-left: 2px dotted $action;
+  height: 94%;
+  right: 3.5em;
+  top: -94%;
+}
+
+.verticalLine.hotels {
+  border-left: 2px dotted $action;
+  height: 94%;
+  right: 1.5em;
+  top: 100%;
 }
 
 .content.selected {
   background-color: $action;
+}
+
+.icon {
+  color: #333;
+  margin: 0.5em;
+}
+
+.icon.enabled {
+  color: #fff;
 }

@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from 'react';
-import _ from 'lodash';
 import template from '../template';
 import Leg from './Leg/Leg';
 import AddLeg from '../AddLeg/AddLeg';
@@ -11,24 +10,42 @@ export default class Timeline extends Component {
     journey: PropTypes.object,
   };
 
+  mapLeg(leg) {
+    return {
+      ...leg,
+      state: leg.originState || leg.destinationState,
+      country: leg.originCountry || leg.destinationCountry,
+      date: leg.departureDate || leg.arrivalDate,
+    };
+  }
+
   render() {
     const { journey } = this.props;
 
     if (journey) {
       const { legs, originCountry, originState, departureDate } = journey;
-      const originLeg = {
+      const originLeg = this.mapLeg({
         originState,
         originCountry,
         departureDate,
         isOrigin: true,
-      };
+      });
 
       return (
         <div className={styles.root}>
           <div className={styles.origin} />
-          <Leg originLeg={originLeg} enableBookings={legs.length > 0} />
-          {legs.map((leg, i) => <Leg leg={leg} key={leg.id} enableBookings={i !== legs.length - 1} />)}
-          <AddLeg journeyId={journey.id} />
+          <Leg leg={originLeg} />
+          {
+            legs.map((leg, i) => {
+              const displayLeg = {
+                ...leg,
+                enableTransport: true,
+                enableHotels: i !== legs.length - 1,
+              };
+              return <Leg leg={this.mapLeg(displayLeg)} key={leg.id} />;
+            })
+          }
+          <AddLeg journey={journey} />
         </div>
       );
     }
