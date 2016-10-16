@@ -85,3 +85,20 @@
 .icon.enabled {
   color: #fff;
 }
+
+.inlineIcon {
+  align-items: center;
+  background-color: $secondary;
+  border-radius: 12px;
+  display: flex;
+  height: 24px;
+  justify-content: center;
+  left: -0.9em;
+  position: absolute;
+  top: 1.2em;
+  width: 24px;
+}
+
+.content.selected .inlineIcon {
+  background-color: $action;
+}
