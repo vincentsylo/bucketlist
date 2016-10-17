@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import cx from 'classnames';
-import _ from 'lodash';
 import template from '../template';
 import { Button, CallToAction } from '../../../components';
 import Activities from './Activities/Activities';
@@ -26,10 +25,6 @@ export default class Planner extends Component {
     }
   }
 
-  selectTab(tab) {
-    this.setState({ selectedTab: tab });
-  }
-
   getButtonProps(type) {
     const { selectedTab } = this.state;
 
@@ -37,6 +32,10 @@ export default class Planner extends Component {
       className: cx(styles.tabTitle, { [styles.selected]: selectedTab === type }),
       onClick: () => this.selectTab(type),
     };
+  }
+
+  selectTab(tab) {
+    this.setState({ selectedTab: tab });
   }
 
   renderCallToAction() {
@@ -91,7 +90,7 @@ export default class Planner extends Component {
   }
 
   render() {
-    const { journey} = this.props;
+    const { journey } = this.props;
 
     return journey ? (
       <div className={styles.root}>

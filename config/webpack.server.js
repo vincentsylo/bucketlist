@@ -23,10 +23,6 @@ module.exports = {
         test: /\.js$/,
         loader: 'babel',
         exclude: /node_modules/,
-        query: {
-          presets: ['es2015', 'node5', 'stage-0', 'react'],
-          plugins: ['transform-decorators-legacy'],
-        },
       },
       { test: /\.json$/, loader: 'json', exclude: /node_modules/ },
       {

@@ -98,7 +98,7 @@ export default class AddLeg extends Component {
                 required
                 showValidation={showValidation}
               />
-              <CheckboxInput label="Return leg?" onChange={::this.returnLeg} />
+              <CheckboxInput label="Return leg?" onChange={this.returnLeg} />
               <Button type="submit" className={styles.submit}>Create leg</Button>
             </form>
           ) : (
