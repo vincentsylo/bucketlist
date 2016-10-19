@@ -4,6 +4,7 @@ import cx from 'classnames';
 import template from '../template';
 import { Button, CallToAction } from '../../../components';
 import Activities from './Activities/Activities';
+import GettingHere from './GettingHere/GettingHere';
 import AddLeg from '../AddLeg/AddLeg';
 import styles from './Planner.css';
 
@@ -73,7 +74,7 @@ export default class Planner extends Component {
           <Button {...this.getButtonProps('activities')}>
             Activities
           </Button>
-          <Button {...this.getButtonProps('Getting here')} disabled={!selectedLeg.enableTransport}>
+          <Button {...this.getButtonProps('getting-here')} disabled={!selectedLeg.enableTransport}>
             Getting here
           </Button>
           <Button {...this.getButtonProps('hotels')} disabled={!selectedLeg.enableHotels}>
@@ -82,6 +83,7 @@ export default class Planner extends Component {
         </div>
         <div className={styles.tabContainer}>
           <Activities selected={selectedTab === 'activities'} />
+          <GettingHere selected={selectedTab === 'getting-here'} />
         </div>
       </div>
     ) : (

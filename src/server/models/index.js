@@ -20,6 +20,9 @@ const db = {};
 db.User = require('./User')(sequelize, Sequelize.DataTypes);
 db.Journey = require('./Journey')(sequelize, Sequelize.DataTypes);
 db.Leg = require('./Leg')(sequelize, Sequelize.DataTypes);
+db.Country = require('./Country')(sequelize, Sequelize.DataTypes);
+db.State = require('./State')(sequelize, Sequelize.DataTypes);
+db.Image = require('./Image')(sequelize, Sequelize.DataTypes);
 
 Object.keys(db).forEach((modelName) => {
   if ('associate' in db[modelName]) {

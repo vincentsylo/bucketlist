@@ -44,11 +44,11 @@ export default class Leg extends Component {
           <div className={styles.actions}>
             <div className={transportCls}>
               <span className="fa fa-plane" />
-              { leg.enableTransport ? <div className={cx(styles.verticalLine, styles.flight)}><span className={`${styles.inlineIcon} fa fa-plane`} /></div> : null }
+              { leg.enableTransport && leg.arrivalMethod ? <div className={cx(styles.verticalLine, styles.flight)}><span className={`${styles.inlineIcon} fa fa-plane`} /></div> : null }
             </div>
             <div className={hotelsCls}>
               <span className="fa fa-bed" />
-              { leg.enableHotels ? <div className={cx(styles.verticalLine, styles.hotels)}><span className={`${styles.inlineIcon} fa fa-bed`} /></div> : null }
+              { leg.enableHotels && leg.hotel ? <div className={cx(styles.verticalLine, styles.hotels)}><span className={`${styles.inlineIcon} fa fa-bed`} /></div> : null }
             </div>
           </div>
         </div>

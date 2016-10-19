@@ -1,7 +1,7 @@
 import bcrypt from 'bcrypt';
 import models from '../models';
 
-const userRouter = (server) => {
+module.exports = (server) => {
   /**
    * Signup
    */
@@ -21,5 +21,3 @@ const userRouter = (server) => {
     }
   });
 };
-
-module.exports = userRouter;

@@ -1,7 +1,7 @@
 import jwtMiddleware from '../middleware/jwt';
 import models from '../models';
 
-const legRouter = (server) => {
+module.exports = (server) => {
   /**
    * Create leg
    */
@@ -18,5 +18,3 @@ const legRouter = (server) => {
     return res.json(leg);
   });
 };
-
-module.exports = legRouter;

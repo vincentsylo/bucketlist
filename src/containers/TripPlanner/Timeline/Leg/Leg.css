@@ -102,3 +102,7 @@
 .content.selected .inlineIcon {
   background-color: $action;
 }
+
+.image {
+  width: 100%;
+}

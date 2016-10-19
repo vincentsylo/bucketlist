@@ -1,7 +1,8 @@
 import jwtMiddleware from '../middleware/jwt';
+import { countryCtrl, stateCtrl } from '../controllers';
 import models from '../models';
 
-const journeyRouter = (server) => {
+module.exports = (server) => {
   /**
    * Get users journeys
    */
@@ -34,6 +35,10 @@ const journeyRouter = (server) => {
    */
   server.post('/api/journey/create', jwtMiddleware, async (req, res) => {
     const { name, originCountry, originState, departureDate } = req.body;
+
+    const country = await countryCtrl.findOrCreate(originCountry);
+    const state = await stateCtrl.findOrCreate(originState, country);
+
     const journey = await models.Journey.create({
       name,
       originCountry,
@@ -45,5 +50,3 @@ const journeyRouter = (server) => {
     return res.json(journey);
   });
 };
-
-module.exports = journeyRouter;

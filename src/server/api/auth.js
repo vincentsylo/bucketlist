@@ -3,7 +3,7 @@ import jwt from 'jwt-simple';
 import moment from 'moment';
 import jwtMiddleware from '../middleware/jwt';
 
-const authRouter = (server) => {
+module.exports = (server) => {
   /**
    * Login
    */
@@ -34,5 +34,3 @@ const authRouter = (server) => {
    */
   server.post('/api/auth/validate', jwtMiddleware, (req, res) => res.json({ validated: true }));
 };
-
-module.exports = authRouter;

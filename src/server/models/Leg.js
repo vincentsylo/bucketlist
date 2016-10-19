@@ -17,6 +17,9 @@ module.exports = (sequelize, DataTypes) => {
     arrivalMethod: {
       type: DataTypes.STRING,
     },
+    hotel: {
+      type: DataTypes.STRING,
+    },
   }, {
     classMethods: {
       associate: (models) => {
