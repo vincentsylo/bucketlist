@@ -36,6 +36,7 @@ export default class Root extends Component {
           <div id="root" dangerouslySetInnerHTML={{ __html: content }} />
           {this.renderInitialState()}
           {head.script.toComponent()}
+          <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDottDEdpNSNOHxXVMJda8kU4Jk0zSPvvg&libraries=places" async defer />
           <script src={assets.app.js} />
         </body>
       </html>

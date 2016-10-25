@@ -3,7 +3,7 @@ import cx from 'classnames';
 import moment from 'moment';
 import { api } from '../../../utils';
 import { TextInput, DateInput } from '../../../components/Form';
-import { Button } from '../../../components';
+import { Button, PlaceAutocomplete } from '../../../components';
 import styles from './AddTrip.css';
 
 export default class AddTrip extends Component {
@@ -82,21 +82,10 @@ export default class AddTrip extends Component {
                   required
                   showValidation={showValidation}
                 />
-                <TextInput
-                  label="Origin country"
+                <PlaceAutocomplete
+                  label="Origin"
                   labelStyle={styles.label}
-                  placeholder="Australia"
-                  value={originCountry}
-                  onChange={e => this.setState({ originCountry: e.target.value })}
-                  required
-                  showValidation={showValidation}
-                />
-                <TextInput
-                  label="Origin state"
-                  labelStyle={styles.label}
-                  placeholder="Sydney"
-                  value={originState}
-                  onChange={e => this.setState({ originState: e.target.value })}
+                  placeholder="Enter your origin city"
                   required
                   showValidation={showValidation}
                 />

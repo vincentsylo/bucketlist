@@ -32,7 +32,7 @@ server.get('*', setHtml);
 
 const models = require('./server/models');
 const port = process.env.PORT || 8081;
-models.sequelize.sync({ force: true }).then(() => {
+models.sequelize.sync({ force: false }).then(() => {
   server.listen(port, () => {
     console.info('==> 🌎 Server listening on port %s.', port);
   });
