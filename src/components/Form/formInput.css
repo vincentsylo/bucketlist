@@ -17,7 +17,7 @@
 }
 
 .input.required {
-  border: 1px solid $danger;
+  border: 2px solid $danger;
 }
 
 .inputContainer {

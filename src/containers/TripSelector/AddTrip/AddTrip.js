@@ -18,14 +18,14 @@ export default class AddTrip extends Component {
     this.showForm = ::this.showForm;
     this.createJourney = ::this.createJourney;
     this.showValidation = ::this.showValidation;
+    this.handleSelect = ::this.handleSelect;
   }
 
   state = {
     showForm: false,
     showValidation: false,
     name: '',
-    originCountry: '',
-    originState: '',
+    originPlace: {},
     departureDate: moment(),
   };
 
@@ -39,16 +39,22 @@ export default class AddTrip extends Component {
     e.preventDefault();
 
     const { fetchJourneys } = this.props;
-    const { name, originCountry, originState, departureDate } = this.state;
+    const { name, originPlace, departureDate } = this.state;
 
-    if (name && originCountry && originState && departureDate) {
-      await api.post('/journey/create', { name, originCountry, originState, departureDate });
+    if (name && originPlace && departureDate) {
+      await api.post('/journey/create', { name, place: originPlace, departureDate });
 
-      this.setState({ name: '', originCountry: '', originState: '', departureDate: moment() });
+      this.setState({ name: '', originPlace: {}, departureDate: moment() });
       fetchJourneys();
     } else {
       this.showValidation();
     }
+  }
+
+  handleSelect(place) {
+    this.setState({
+      originPlace: place,
+    });
   }
 
   showForm() {
@@ -61,7 +67,7 @@ export default class AddTrip extends Component {
 
   render() {
     const { className } = this.props;
-    const { showForm, name, originCountry, originState, departureDate, showValidation } = this.state;
+    const { showForm, name, originPlace, departureDate, showValidation } = this.state;
     const rootCls = cx(styles.root, className);
     const formCls = cx(styles.content, {
       [styles.showForm]: showForm,
@@ -88,6 +94,8 @@ export default class AddTrip extends Component {
                   placeholder="Enter your origin city"
                   required
                   showValidation={showValidation}
+                  selectPlace={this.handleSelect}
+                  selectedPlace={originPlace}
                 />
                 <DateInput
                   label="Departing on"

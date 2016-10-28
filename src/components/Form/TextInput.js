@@ -4,8 +4,8 @@ import formInput from './formInput';
 @formInput()
 export default class TextInput extends Component {
   static propTypes = {
-    onChange: PropTypes.func.isRequired,
-    value: PropTypes.string.isRequired,
+    onChange: PropTypes.func,
+    value: PropTypes.string,
   };
 
   render() {

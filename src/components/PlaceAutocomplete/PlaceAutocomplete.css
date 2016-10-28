@@ -1,0 +1,24 @@
+.root {
+  position: relative;
+}
+
+.suggestions {
+  background-color: #fff;
+  border: 1px solid #8f8f8f;
+  border-top: none;
+  max-height: 15em;
+  overflow-x: hidden;
+  overflow-y: auto;
+  position: absolute;
+  z-index: 100;
+}
+
+.suggestion {
+  border-bottom: 1px solid #ddd;
+  cursor: pointer;
+  padding: 0.5em;
+}
+
+.suggestion:hover {
+  background-color: #ddd;
+}

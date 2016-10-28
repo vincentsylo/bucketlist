@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-  const State = sequelize.define('State', {
+  const Place = sequelize.define('Place', {
     id: {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV1,
@@ -8,20 +8,26 @@ module.exports = (sequelize, DataTypes) => {
     name: {
       type: DataTypes.STRING,
     },
+    placeId: {
+      type: DataTypes.STRING,
+    },
     latitude: {
       type: DataTypes.DOUBLE,
     },
     longitude: {
       type: DataTypes.DOUBLE,
     },
+    photos: {
+      type: DataTypes.JSON,
+    }
   }, {
     classMethods: {
       associate: (models) => {
-        State.belongsTo(models.Country, { as: 'country', foreignKey: 'countryId' });
-        State.hasMany(models.Image, { as: 'images', foreignKey: 'stateId' });
+        Place.belongsToMany(models.Journey, { as: 'journey', through: 'journey_place', foreignKey: 'placeId' });
+        Place.belongsToMany(models.Leg, { as: 'leg', through: 'leg_place', foreignKey: 'placeId' });
       },
     },
   });
 
-  return State;
+  return Place;
 };
