@@ -24,7 +24,7 @@ module.exports = (server) => {
       include: [{
         model: models.Leg,
         as: 'legs',
-        include: [{ model: models.Place, as: 'place' }]
+        include: [{ model: models.Place, as: 'place' }],
       }],
     }).catch(() => res.sendStatus(400));
 

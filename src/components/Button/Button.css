@@ -8,5 +8,14 @@
 
 .root:hover {
   background-color: color(#2dbe60 lightness(40%));
+  color: #fff;
   cursor: pointer;
+}
+
+.root:disabled {
+  background-color: #ddd;
+}
+
+.root:disabled:hover {
+  cursor: default;
 }

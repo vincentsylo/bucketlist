@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from 'react';
-import { googleMaps } from '../../utils';
 import { TextInput } from '../Form';
 import styles from './PlaceAutocomplete.css';
 
@@ -7,13 +6,6 @@ export default class PlaceAutocomplete extends Component {
   static propTypes = {
     selectPlace: PropTypes.func.isRequired,
     selectedPlace: PropTypes.object,
-  };
-
-  state = {
-    focused: false,
-    value: '',
-    suggestions: [],
-    showSuggestions: false,
   };
 
   constructor(props) {
@@ -25,6 +17,13 @@ export default class PlaceAutocomplete extends Component {
     this.handleSelect = ::this.handleSelect;
   }
 
+  state = {
+    focused: false,
+    value: '',
+    suggestions: [],
+    showSuggestions: false,
+  };
+
   autocompleteInput(e) {
     const { selectPlace } = this.props;
     const { value } = e.target;
@@ -32,7 +31,7 @@ export default class PlaceAutocomplete extends Component {
     selectPlace({});
     this.setState({ value }, () => {
       if (value) {
-        this.autocompleteService.getPlacePredictions({ input: value, types: ['(cities)'] }, suggestions => {
+        this.autocompleteService.getPlacePredictions({ input: value, types: ['(cities)'] }, (suggestions) => {
           if (suggestions) {
             this.setState({ suggestions, showSuggestions: true });
           } else {
@@ -71,9 +70,9 @@ export default class PlaceAutocomplete extends Component {
           showSuggestions ? (
             <div className={styles.suggestions}>
               {
-                suggestions.map((suggestion, i) => {
-                  return <div key={i} className={styles.suggestion} onClick={() => this.handleSelect(suggestion, selectPlace)}>{suggestion.description}</div>
-                })
+                suggestions.map((suggestion, i) =>
+                  <div key={i} className={styles.suggestion} onClick={() => this.handleSelect(suggestion, selectPlace)}>{suggestion.description}</div>
+                )
               }
             </div>
           ) : null

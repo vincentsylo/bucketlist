@@ -28,7 +28,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     photos: {
       type: DataTypes.JSON,
-    }
+    },
   }, {
     classMethods: {
       associate: (models) => {

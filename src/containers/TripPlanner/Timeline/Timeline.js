@@ -14,7 +14,7 @@ export default class Timeline extends Component {
     const { journey } = this.props;
 
     if (journey) {
-      const { legs, originCountry, originState, departureDate } = journey;
+      const { legs } = journey;
 
       return (
         <div className={styles.root}>

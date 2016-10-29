@@ -3,8 +3,8 @@ import { api } from '../../utils';
 import models from '../models';
 
 export default {
-  findOrCreate: async function(place) {
-    const existingPlace = await models.Place.findOne({ where: { placeId: place.place_id }});
+  findOrCreate: async (place) => {
+    const existingPlace = await models.Place.findOne({ where: { placeId: place.place_id } });
 
     if (!existingPlace) {
       const details = await api.get(`https://maps.googleapis.com/maps/api/place/details/json?placeid=${place.place_id}&key=${process.env.GOOGLE_MAP_KEY}`);
@@ -26,7 +26,7 @@ export default {
         city,
         state,
         country,
-        photos: result.photos
+        photos: result.photos,
       });
       return newPlace;
     }

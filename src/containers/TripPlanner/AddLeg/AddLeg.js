@@ -1,10 +1,11 @@
 import React, { Component, PropTypes } from 'react';
 import moment from 'moment';
+import _ from 'lodash';
 import { connect } from 'react-redux';
 import { api } from '../../../utils';
 import { journeyActions } from '../../../store/actions';
-import { TextInput, DateInput, CheckboxInput } from '../../../components/Form';
-import { Button } from '../../../components';
+import { DateInput, CheckboxInput } from '../../../components/Form';
+import { Button, PlaceAutocomplete } from '../../../components';
 import styles from './AddLeg.css';
 
 @connect()
@@ -26,9 +27,8 @@ export default class AddLeg extends Component {
   state = {
     showForm: false,
     showValidation: false,
-    destinationCountry: '',
-    destinationState: '',
-    arrivalDate: moment(),
+    selectedPlace: {},
+    date: moment(),
   };
 
   showForm() {
@@ -47,20 +47,28 @@ export default class AddLeg extends Component {
 
   returnLeg(e) {
     const { journey } = this.props;
+    const originPlace = _(journey.legs)
+      .filter('isOrigin')
+      .first()
+      .valueOf()
+      .place;
+
     this.setState({
-      destinationCountry: e.target.checked ? journey.originCountry : '',
-      destinationState: e.target.checked ? journey.originState : '',
+      selectedPlace: e.target.checked ? {
+        description: originPlace.name,
+        placeId: originPlace.placeId,
+      } : {},
     });
   }
 
   async createLeg(e) {
     e.preventDefault();
     const { dispatch, journey } = this.props;
-    const { destinationCountry, destinationState, arrivalDate } = this.state;
+    const { selectedPlace, date } = this.state;
 
-    if (destinationCountry && destinationState && arrivalDate) {
-      await api.post('/leg/create', { destinationCountry, destinationState, arrivalDate, journeyId: journey.id });
-      this.setState({ destinationCountry: '', destinationState: '', arrivalDate: moment(), showForm: false });
+    if (selectedPlace && date) {
+      await api.post('/leg/create', { place: selectedPlace, date, journeyId: journey.id });
+      this.setState({ selectedPlace: {}, date: moment(), showForm: false });
       dispatch(journeyActions.fetchJourney(journey.id));
     } else {
       this.showValidation();
@@ -68,33 +76,25 @@ export default class AddLeg extends Component {
   }
 
   render() {
-    const { showForm, destinationCountry, destinationState, arrivalDate, showValidation } = this.state;
+    const { showForm, selectedPlace, date, showValidation } = this.state;
 
     return (
       <div className={styles.root}>
         {
           showForm ? (
             <form method="POST" onSubmit={this.createLeg} className={styles.form}>
-              <TextInput
-                label="Country"
-                placeholder="Australia"
-                value={destinationCountry}
-                onChange={e => this.setState({ destinationCountry: e.target.value })}
+              <PlaceAutocomplete
+                label="Leg"
+                placeholder="Enter your destination city"
                 required
                 showValidation={showValidation}
-              />
-              <TextInput
-                label="State"
-                placeholder="Sydney"
-                value={destinationState}
-                onChange={e => this.setState({ destinationState: e.target.value })}
-                required
-                showValidation={showValidation}
+                selectPlace={place => this.setState({ selectedPlace: place })}
+                selectedPlace={selectedPlace}
               />
               <DateInput
                 label="Arriving on"
-                value={arrivalDate}
-                onChange={date => this.setState({ arrivalDate: date })}
+                value={date}
+                onChange={newDate => this.setState({ date: newDate })}
                 required
                 showValidation={showValidation}
               />

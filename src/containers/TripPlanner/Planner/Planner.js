@@ -42,7 +42,7 @@ export default class Planner extends Component {
   renderCallToAction() {
     const { journey, selectedLeg } = this.props;
 
-    if (journey.legs.length === 0) {
+    if (journey.legs.length === 1) {
       return (
         <CallToAction title="Getting started" className={styles.callToAction}>
           <div>
