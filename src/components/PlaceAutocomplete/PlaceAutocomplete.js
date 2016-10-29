@@ -36,11 +36,11 @@ export default class PlaceAutocomplete extends Component {
           if (suggestions) {
             this.setState({ suggestions, showSuggestions: true });
           } else {
-            this.setState({ suggestions: [] });
+            this.setState({ suggestions: [], showSuggestions: false });
           }
         });
       } else {
-        this.setState({ suggestions: [] });
+        this.setState({ suggestions: [], showSuggestions: false });
       }
     });
   }

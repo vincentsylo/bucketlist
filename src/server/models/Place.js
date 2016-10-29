@@ -8,6 +8,15 @@ module.exports = (sequelize, DataTypes) => {
     name: {
       type: DataTypes.STRING,
     },
+    city: {
+      type: DataTypes.STRING,
+    },
+    state: {
+      type: DataTypes.STRING,
+    },
+    country: {
+      type: DataTypes.STRING,
+    },
     placeId: {
       type: DataTypes.STRING,
     },
@@ -23,8 +32,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     classMethods: {
       associate: (models) => {
-        Place.belongsToMany(models.Journey, { as: 'journey', through: 'journey_place', foreignKey: 'placeId' });
-        Place.belongsToMany(models.Leg, { as: 'leg', through: 'leg_place', foreignKey: 'placeId' });
+        Place.hasMany(models.Leg, { as: 'legs', foreignKey: 'placeId' });
       },
     },
   });

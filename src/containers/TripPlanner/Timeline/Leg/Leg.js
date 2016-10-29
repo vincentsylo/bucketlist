@@ -38,8 +38,8 @@ export default class Leg extends Component {
             <div>{moment(leg.date).format('YYYY')}</div>
           </div>
           <div className={styles.destination}>
-            <div>{leg.state}</div>
-            <div>{leg.country}</div>
+            <div>{leg.place.state}</div>
+            <div>{leg.place.country}</div>
           </div>
           <div className={styles.actions}>
             <div className={transportCls}>

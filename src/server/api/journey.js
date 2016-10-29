@@ -21,7 +21,11 @@ module.exports = (server) => {
   server.get('/api/journey/:journeyId', async (req, res) => {
     const journey = await models.Journey.findOne({
       where: { id: req.params.journeyId },
-      include: [{ model: models.Leg, as: 'legs' }],
+      include: [{
+        model: models.Leg,
+        as: 'legs',
+        include: [{ model: models.Place, as: 'place' }]
+      }],
     }).catch(() => res.sendStatus(400));
 
     return res.json(journey);
@@ -35,18 +39,17 @@ module.exports = (server) => {
 
     const newPlace = await placeCtrl.findOrCreate(place);
 
-    const originCity = place.terms ? place.terms[0].value : '';
-    const originState = place.terms ? place.terms[1].value : '';
-    const originCountry = place.terms ? place.terms[2].value : '';
-
     const journey = await models.Journey.create({
       name,
-      originCountry,
-      originState,
-      originCity,
-      departureDate,
       userId: req.user.dataValues.id,
     }).catch(() => res.sendStatus(400));
+
+    const leg = await journey.createLeg({
+      date: departureDate,
+      isOrigin: true,
+    });
+
+    await leg.setPlace(newPlace);
 
     return res.json(journey);
   });
