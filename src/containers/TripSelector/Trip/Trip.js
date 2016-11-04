@@ -1,7 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import { browserHistory } from 'react-router';
+import _ from 'lodash';
+import { googlePlaces } from '../../../utils';
 import styles from './Trip.css';
-import journeyImg from '../../../images/shibuya.jpg';
 
 export default class Trip extends Component {
   static propTypes = {
@@ -10,10 +11,12 @@ export default class Trip extends Component {
 
   render() {
     const { journey } = this.props;
+    const photos = _.last(journey.legs).place.photos;
+    const imageRef = _.first(photos).photo_reference;
 
     return (
       <div className={styles.journeyItem} onClick={() => browserHistory.push(`/trip-planner/${journey.id}`)}>
-        <img src={journeyImg} className={styles.journeyImg} />
+        <img src={googlePlaces.getImageUrl(imageRef)} className={styles.journeyImg} />
         <div className={styles.content}>
           <span className={styles.title}>{journey.name}</span>
         </div>

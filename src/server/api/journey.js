@@ -9,7 +9,14 @@ module.exports = (server) => {
   server.get('/api/journey/list', jwtMiddleware, async (req, res) => {
     const journeys = await models.Journey.findAll({
       where: { userId: req.user.dataValues.id },
-      include: [{ model: models.Leg, as: 'legs' }],
+      include: [{
+        model: models.Leg,
+        as: 'legs',
+        include: [{
+          model: models.Place,
+          as: 'place',
+        }],
+      }],
     }).catch(() => res.sendStatus(400));
 
     return res.json(journeys);
