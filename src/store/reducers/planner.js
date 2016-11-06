@@ -4,6 +4,7 @@ import {
 
 const initialState = {
   selectedLeg: null,
+  plannerView: '',
 };
 
 export default function planner(state = initialState, action) {
@@ -12,6 +13,7 @@ export default function planner(state = initialState, action) {
       return {
         ...state,
         selectedLeg: action.leg,
+        plannerView: action.view,
       };
     default:
       return state;

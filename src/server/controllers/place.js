@@ -14,7 +14,7 @@ export default {
       const latitude = location.lat;
       const longitude = location.lng;
 
-      const name = place.terms ? _.initial(place.terms).map(term => term.value).join(' ') : '';
+      const name = place.terms ? _.initial(place.terms).map(term => term.value).join(', ') : '';
       const country = place.terms ? _.last(place.terms).value : '';
 
       const newPlace = await models.Place.create({

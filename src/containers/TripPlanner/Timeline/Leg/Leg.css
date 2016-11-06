@@ -7,6 +7,14 @@
   padding-top: 4em;
 }
 
+.settings {
+  display: inline-block;
+}
+
+.setting {
+  display: block;
+}
+
 .destination,
 .date {
   display: inline-block;
@@ -23,12 +31,6 @@
   flex: 1;
 }
 
-.destination {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
 .date {
   text-align: right;
 }
@@ -39,7 +41,7 @@
   display: flex;
   padding: 0.5em;
   position: relative;
-  z-index: 0;
+  z-index: 1;
 }
 
 .content:hover {
@@ -49,28 +51,30 @@
 .verticalLine {
   height: 100%;
   position: absolute;
-  z-index: 1;
+  z-index: 2;
 }
 
 .verticalLine.default {
   border-left: 3px solid $action;
-  left: 4.4em;
+  left: 6.8em;
   padding-bottom: 4em;
   top: 0;
 }
 
 .verticalLine.flight {
   border-left: 2px dotted $action;
-  height: 94%;
-  right: 3.5em;
-  top: -94%;
+  height: 100%;
+  right: 4.2em;
+  top: -99%;
+  z-index: 0;
 }
 
 .verticalLine.hotels {
   border-left: 2px dotted $action;
-  height: 94%;
-  right: 1.5em;
-  top: 100%;
+  height: 100%;
+  right: 1.7em;
+  top: 99%;
+  z-index: 0;
 }
 
 .content.selected {
@@ -79,11 +83,17 @@
 
 .icon {
   color: #333;
-  margin: 0.5em;
+  margin: 0.25em;
 }
 
 .icon.enabled {
   color: #fff;
+}
+
+.icon.enabled:hover,
+.content.selected .icon.enabled.selected {
+  cursor: pointer;
+  transform: scale(1.5, 1.5);
 }
 
 .inlineIcon {

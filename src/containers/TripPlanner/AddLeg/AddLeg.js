@@ -31,6 +31,14 @@ export default class AddLeg extends Component {
     date: moment(),
   };
 
+  componentWillMount() {
+    const { journey } = this.props;
+
+    this.setState({
+      date: moment(_.last(journey.legs).date),
+    });
+  }
+
   showForm() {
     const { showForm } = this.state;
 
@@ -76,6 +84,7 @@ export default class AddLeg extends Component {
   }
 
   render() {
+    const { journey } = this.props;
     const { showForm, selectedPlace, date, showValidation } = this.state;
 
     return (
@@ -97,6 +106,7 @@ export default class AddLeg extends Component {
                 onChange={newDate => this.setState({ date: newDate })}
                 required
                 showValidation={showValidation}
+                minDate={moment(_.last(journey.legs).date)}
               />
               <CheckboxInput label="Return leg?" onChange={this.returnLeg} />
               <Button type="submit" className={styles.submit}>Create leg</Button>

@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
     date: {
       type: DataTypes.STRING,
     },
-    method: {
+    transport: {
       type: DataTypes.STRING,
     },
     hotel: {

@@ -1,0 +1,14 @@
+.root {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  min-height: 100%;
+}
+
+.column {
+  flex: 1;
+}
+
+.planningBox {
+
+}
