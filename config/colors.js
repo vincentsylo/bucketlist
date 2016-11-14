@@ -10,4 +10,6 @@ module.exports = {
   danger: '#d9534f',
   dangerHover: '#c9302c',
 
+  warning: '#ffae42',
+  warningHover: '#ff980f',
 };

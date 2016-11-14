@@ -18,12 +18,27 @@ export default class Leg extends Component {
     plannerView: PropTypes.string,
   };
 
+  constructor(props) {
+    super(props);
+
+    this.selectDelete = ::this.selectDelete;
+    this.selectSettings = ::this.selectSettings;
+  }
+
   selectLeg(e, view) {
     e.stopPropagation();
 
     const { dispatch, leg } = this.props;
 
     dispatch(plannerActions.selectLeg(leg, view));
+  }
+
+  selectDelete(e) {
+    e.stopPropagation();
+  }
+
+  selectSettings(e) {
+    e.stopPropagation();
   }
 
   render() {
@@ -48,11 +63,15 @@ export default class Leg extends Component {
       <div className={rootCls}>
         <div className={contentCls} onClick={e => this.selectLeg(e, 'activities')}>
           <div className={styles.settings}>
-            <span className={`${styles.setting} fa-stack`}>
-              <span className="fa fa-square-o fa-stack-2x" />
-              <span className="fa fa-trash fa-stack-1x" />
-            </span>
-            <span className={`${styles.setting} fa-stack`}>
+            {
+              !leg.isOrigin ? (
+                <span className={`${styles.setting} ${styles.deleteIcon} fa-stack`} onClick={this.selectDelete}>
+                  <span className="fa fa-square-o fa-stack-2x" />
+                  <span className="fa fa-trash fa-stack-1x" />
+                </span>
+              ) : null
+            }
+            <span className={`${styles.setting} ${styles.settingsIcon} fa-stack`} onClick={this.selectSettings}>
               <span className="fa fa-square-o fa-stack-2x" />
               <span className="fa fa-cog fa-stack-1x" />
             </span>

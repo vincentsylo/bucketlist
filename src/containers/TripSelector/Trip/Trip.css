@@ -17,6 +17,7 @@
   justify-content: center;
   left: 0;
   position: absolute;
+  text-align: center;
   top: 0;
   transition: all 0.2s ease-in-out;
   width: 100%;
