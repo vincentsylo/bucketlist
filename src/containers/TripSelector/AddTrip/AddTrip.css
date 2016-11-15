@@ -1,3 +1,5 @@
+@import '../../../styles/colors.css';
+
 .root {
   align-items: center;
   background-color: $secondary;

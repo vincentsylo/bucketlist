@@ -1,3 +1,5 @@
+@import '../../../../styles/colors.css';
+
 .link {
   color: $primaryFont;
   display: inline-block;

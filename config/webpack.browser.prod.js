@@ -37,8 +37,9 @@ module.exports = {
     ],
   },
 
-  postcss() {
+  postcss(webpack) {
     return [
+      require('postcss-import')({ addDependencyTo: webpack }),
       require('precss'),
       require('autoprefixer')({
         browsers: [
@@ -49,11 +50,6 @@ module.exports = {
         ],
       }),
       require('postcss-flexbugs-fixes'),
-      require('postcss-simple-vars')({
-        variables: function () {
-          return require('./colors');
-        }
-      }),
     ];
   },
 
