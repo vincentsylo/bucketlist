@@ -13,7 +13,7 @@
     "axios": "^0.13.1",
     "babel-core": "^6.14.0",
     "babel-polyfill": "^6.13.0",
-    "bcrypt": "^0.8.7",
+    "bcryptjs": "^2.3.0",
     "body-parser": "^1.15.2",
     "classnames": "^2.2.5",
     "compression": "^1.6.2",
