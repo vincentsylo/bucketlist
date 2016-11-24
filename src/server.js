@@ -4,9 +4,7 @@ import compress from 'compression';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 
-require('babel-core/register');
 require('css-modules-require-hook/preset');
-require('babel-polyfill');
 require('dotenv').config({ silent: true });
 
 const server = express();
@@ -16,7 +14,6 @@ server.use(compress());
 server.use(bodyParser.json());
 server.use(bodyParser.urlencoded({ extended: true }));
 server.use(cookieParser());
-
 server.use('/app', express.static('./dist/app'));
 
 server.get('/favicon.ico', (req, res) => {

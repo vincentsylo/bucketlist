@@ -81,19 +81,19 @@ export default class Activities extends Component {
       }, (results, status) => {
         if (status === window.google.maps.places.PlacesServiceStatus.OK) {
           this.setState({ results }, () => {
-            _.each(results, result => {
+            _.each(results, (result) => {
               const map = this.map;
               const infoWindow = this.infoWindow;
               const marker = new window.google.maps.Marker({
                 map,
-                position: result.geometry.location
+                position: result.geometry.location,
               });
-              window.google.maps.event.addListener(marker, 'click', function() {
+              window.google.maps.event.addListener(marker, 'click', function () {
                 infoWindow.setContent(result.name);
                 infoWindow.open(map, this);
               });
               this.markers.push(marker);
-            })
+            });
           });
         }
       });
@@ -110,7 +110,7 @@ export default class Activities extends Component {
         if (status === window.google.maps.places.PlacesServiceStatus.OK) {
           console.log(result);
         }
-      })
+      });
     });
   }
 
@@ -134,26 +134,26 @@ export default class Activities extends Component {
             {
               types.map((type, i) => {
                 const cls = cx(styles.typeButton, {
-                  [styles.selected]: this.state.type === type.type
+                  [styles.selected]: this.state.type === type.type,
                 });
                 return (
                   <button key={i} className={cls} onClick={() => this.selectType(type.type)}>
-                    <span className={`fa ${type.icon}`}/>
+                    <span className={`fa ${type.icon}`} />
                     <span>{type.name}</span>
                   </button>
-                )
+                );
               })
             }
           </div>
-          <TextInput placeholder="Search activities" icon="fa fa-search" value={activitySearch} onChange={(e) => this.findPlaces(e.target.value)} />
+          <TextInput placeholder="Search activities" icon="fa fa-search" value={activitySearch} onChange={e => this.findPlaces(e.target.value)} />
           <div className={cx(styles.column, styles.activitiesColumn)}>
             <div className={styles.activities}>
               {
                 results.map((result, i) => {
-                  const img = result.photos ? <img src={result.photos[0].getUrl({ maxWidth: 200, maxHeight: 200 })} className={styles.img} /> : null;
+                  const img = result.photos ? <img src={result.photos[0].getUrl({ maxWidth: 200, maxHeight: 200 })} className={styles.img} role="presentation" /> : null;
 
                   return (
-                    <div key={i} style={{ background: `url(${img}) no-repeat center center #000`}} className={styles.activity} onClick={() => this.selectPlace(result)}>
+                    <div key={i} style={{ background: `url(${img}) no-repeat center center #000` }} className={styles.activity} onClick={() => this.selectPlace(result)}>
                       {img}
                       <div className={styles.content}>
                         <span className={styles.title}>{result.name}</span>

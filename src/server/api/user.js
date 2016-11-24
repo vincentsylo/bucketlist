@@ -1,4 +1,4 @@
-import bcrypt from 'bcryptjs';
+import bcrypt from 'bcryptjs-then';
 import models from '../models';
 
 module.exports = (server) => {
@@ -10,14 +10,16 @@ module.exports = (server) => {
 
     const existingUser = await models.User.findOne({ where: { email } });
     if (existingUser) {
-      res.sendStatus(400);
-    } else {
-      bcrypt.hash(password, 10, async (err, hash) => {
-        const user = await models.User.create({ email, hash });
-        if (user) {
-          return res.sendStatus(200);
-        }
-      });
+      return res.sendStatus(400);
     }
+
+    const hash = await bcrypt.hash(password, 10);
+    if (hash) {
+      const user = await models.User.create({ email, hash });
+      if (user) {
+        return res.sendStatus(200);
+      }
+    }
+    return res.sendStatus(400);
   });
 };

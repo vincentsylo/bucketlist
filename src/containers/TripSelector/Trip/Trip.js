@@ -16,7 +16,7 @@ export default class Trip extends Component {
 
     return (
       <div className={styles.journeyItem} onClick={() => browserHistory.push(`/trip-planner/${journey.id}`)}>
-        <img src={googlePlaces.getImageUrl(imageRef)} className={styles.journeyImg} />
+        <img src={googlePlaces.getImageUrl(imageRef)} className={styles.journeyImg} role="presentation" />
         <div className={styles.content}>
           <span className={styles.title}>{journey.name}</span>
         </div>
