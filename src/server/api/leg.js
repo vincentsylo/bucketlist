@@ -36,10 +36,8 @@ module.exports = (server) => {
     const journey = await models.Journey.findOne({ where: { userId: req.user.id, id: journeyId } });
 
     if (journey) {
-      const success = await models.Leg.delete({ where: { id: legId, journeyId } });
-
-      console.log(success);
-      return res.send(success);
+      await models.Leg.destroy({ where: { id: legId, journeyId } });
+      return res.sendStatus(200);
     }
 
     return res.sendStatus(500);

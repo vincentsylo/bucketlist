@@ -3,7 +3,8 @@ import moment from 'moment';
 import _ from 'lodash';
 import cx from 'classnames';
 import { connect } from 'react-redux';
-import { plannerActions } from '../../../../store/actions';
+import { plannerActions, journeyActions } from '../../../../store/actions';
+import { api } from '../../../../utils';
 import styles from './Leg.css';
 
 @connect(state => ({
@@ -16,6 +17,7 @@ export default class Leg extends Component {
     leg: PropTypes.object,
     selectedLeg: PropTypes.object,
     plannerView: PropTypes.string,
+    journey: PropTypes.object,
   };
 
   constructor(props) {
@@ -33,8 +35,17 @@ export default class Leg extends Component {
     dispatch(plannerActions.selectLeg(leg, view));
   }
 
-  selectDelete(e) {
+  async selectDelete(e) {
     e.stopPropagation();
+
+    const { dispatch, leg, journey } = this.props;
+
+    await api.post('/leg/remove', {
+      legId: leg.id,
+      journeyId: journey.id,
+    });
+
+    dispatch(journeyActions.fetchJourney(journey.id));
   }
 
   selectSettings(e) {
@@ -65,7 +76,7 @@ export default class Leg extends Component {
           <div className={styles.settings}>
             {
               !leg.isOrigin ? (
-                <span className={`${styles.setting} ${styles.deleteIcon} fa-stack`} onClick={this.selectDelete}>
+                <span className={`${styles.setting} ${styles.deleteIcon} fa-stack`} onClick={e => this.selectDelete(e)}>
                   <span className="fa fa-square-o fa-stack-2x" />
                   <span className="fa fa-trash fa-stack-1x" />
                 </span>
