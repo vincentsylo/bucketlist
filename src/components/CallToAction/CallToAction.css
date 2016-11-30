@@ -1,4 +1,5 @@
-@import '../../styles/colors.css';
+@value colors: "../../styles/colors.css";
+@value titleFont from colors;
 
 .root {
   align-items: center;
@@ -8,7 +9,7 @@
 }
 
 .title {
-  color: $titleFont;
+  color: titleFont;
   font-size: 16px;
   font-weight: 400;
   margin: 10px 0;

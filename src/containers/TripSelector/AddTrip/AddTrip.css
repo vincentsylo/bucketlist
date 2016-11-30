@@ -1,8 +1,9 @@
-@import '../../../styles/colors.css';
+@value colors: "../../../styles/colors.css";
+@value secondary, lightFont from colors;
 
 .root {
   align-items: center;
-  background-color: $secondary;
+  background-color: secondary;
   display: flex;
   justify-content: center;
   position: relative;
@@ -43,5 +44,5 @@
 }
 
 .label {
-  color: $lightFont;
+  color: lightFont;
 }

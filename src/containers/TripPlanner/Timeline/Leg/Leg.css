@@ -1,4 +1,5 @@
-@import '../../../../styles/colors.css';
+@value colors: "../../../../styles/colors.css";
+@value dangerHover, warningHover, secondary, action from colors;
 
 .root {
   margin-bottom: 4em;
@@ -15,18 +16,18 @@
 
 .setting {
   display: block;
-}
 
-.setting:hover {
-  cursor: pointer;
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .setting.deleteIcon:hover {
-  color: $dangerHover;
+  color: dangerHover;
 }
 
 .setting.settingsIcon:hover {
-  color: $warningHover;
+  color: warningHover;
 }
 
 .destination,
@@ -50,7 +51,7 @@
 }
 
 .content {
-  background-color: $secondary;
+  background-color: secondary;
   color: #fff;
   display: flex;
   padding: 0.5em;
@@ -69,14 +70,14 @@
 }
 
 .verticalLine.default {
-  border-left: 3px solid $action;
+  border-left: 3px solid action;
   left: 6.8em;
   padding-bottom: 4em;
   top: 0;
 }
 
 .verticalLine.flight {
-  border-left: 2px dotted $action;
+  border-left: 2px dotted action;
   height: 100%;
   right: 4.2em;
   top: -99%;
@@ -84,7 +85,7 @@
 }
 
 .verticalLine.hotels {
-  border-left: 2px dotted $action;
+  border-left: 2px dotted action;
   height: 100%;
   right: 1.7em;
   top: 99%;
@@ -92,7 +93,7 @@
 }
 
 .content.selected {
-  background-color: $action;
+  background-color: action;
 }
 
 .icon {
@@ -112,7 +113,7 @@
 
 .inlineIcon {
   align-items: center;
-  background-color: $secondary;
+  background-color: secondary;
   border-radius: 12px;
   display: flex;
   height: 24px;
@@ -124,7 +125,7 @@
 }
 
 .content.selected .inlineIcon {
-  background-color: $action;
+  background-color: action;
 }
 
 .image {

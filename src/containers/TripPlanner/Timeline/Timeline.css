@@ -1,4 +1,5 @@
-@import '../../../styles/colors.css';
+@value colors: "../../../styles/colors.css";
+@value action from colors;
 
 .template {
   border-right: 4px solid #F8F8F9;
@@ -9,7 +10,7 @@
 }
 
 .origin {
-  background-color: $action;
+  background-color: action;
   border-radius: 10px;
   height: 20px;
   left: 6.18em;

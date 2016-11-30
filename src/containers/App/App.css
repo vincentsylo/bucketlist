@@ -1,4 +1,5 @@
-@import '../../styles/colors.css';
+@value colors: "../../styles/colors.css";
+@value primaryFont from colors;
 
 html,
 body {
@@ -7,7 +8,7 @@ body {
 }
 
 .root {
-  color: $primaryFont;
+  color: primaryFont;
   display: flex;
   flex-direction: column;
   font-size: 14px;

@@ -1,8 +1,9 @@
-@import '../../styles/colors.css';
+@value colors: "../../styles/colors.css";
+@value action from colors;
 
 .root {
   border: none;
-  background-color: $action;
+  background-color: action;
   color: #fff;
   height: 3em;
   width: 100%;

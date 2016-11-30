@@ -1,7 +1,9 @@
-@import '../../../../styles/colors.css';
+@value colors: "../../../../styles/colors.css";
+@value primaryFont, secondary, lightFont from colors;
 
 .link {
-  color: $primaryFont;
+  color: primaryFont;
+  cursor: pointer;
   display: inline-block;
   font-size: 1.05em;
   letter-spacing: 1px;
@@ -9,10 +11,9 @@
   text-decoration: none;
   text-transform: uppercase;
   transition: all 0.2s ease;
+}
 
-  &:hover {
-   background-color: $secondary;
-   color: $lightFont;
-   cursor: pointer;
- }
+.link:hover {
+  background-color: secondary;
+  color: lightFont;
 }

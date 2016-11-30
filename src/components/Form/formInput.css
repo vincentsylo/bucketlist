@@ -1,4 +1,5 @@
-@import '../../styles/colors.css';
+@value colors: "../../styles/colors.css";
+@value danger from colors;
 
 .root {
   width: 100%;
@@ -23,7 +24,7 @@
 }
 
 .input.required {
-  border: 2px solid $danger;
+  border: 2px solid danger;
 }
 
 .inputContainer {
@@ -35,7 +36,7 @@
 }
 
 .requiredIcon {
-  color: $danger;
+  color: danger;
   position: absolute;
   right: 3px;
   top: 11px;

@@ -1,9 +1,10 @@
-@import '../../../styles/colors.css';
+@value colors: "../../../styles/colors.css";
+@value primaryFont from colors;
 
 .root {
   background-color: #fff;
   border-top: 1px solid #ddd;
-  color: $primaryFont;
+  color: primaryFont;
   padding: 2em 1em;
   text-align: center;
 }
