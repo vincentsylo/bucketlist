@@ -41,18 +41,18 @@
   flex: 1;
   padding: 10px;
 
-  &.selected {
-    border: 2px solid #1760d7;
-  }
-
-  &:not(:first-child) {
-    margin-left: 5px;
-  }
-
   span {
     display: block;
     margin: 10px 0;
   }
+}
+
+.typeButton.selected {
+  border: 2px solid #1760d7;
+}
+
+.typeButton:not(:first-child) {
+  margin-left: 5px;
 }
 
 .activitiesColumn {
@@ -98,7 +98,7 @@
     transition: all 0.2s ease-in-out;
     width: 100%;
   }
-  
+
   .content:hover {
     background: none;
     cursor: pointer;

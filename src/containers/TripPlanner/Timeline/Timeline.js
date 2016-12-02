@@ -25,6 +25,7 @@ export default class Timeline extends Component {
                 ...leg,
                 enableTransport: !leg.isOrigin,
                 enableHotels: !leg.isOrigin && i !== legs.length - 1,
+                prevLeg: leg.isOrigin ? {} : legs[i - 1],
                 nextLeg: i === legs.length - 1 ? {} : legs[i + 1],
               };
               return <Leg journey={journey} leg={displayLeg} key={leg.id} />;

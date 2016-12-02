@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
+import moment from 'moment';
 import plannerTemplate from '../plannerTemplate';
 import styles from './GettingHere.css';
 
@@ -13,9 +14,18 @@ export default class GettingHere extends Component {
   render() {
     const { selectedLeg } = this.props;
 
+    const depart = `${selectedLeg.prevLeg.place.name}, ${selectedLeg.prevLeg.place.country}`.replace(/ /g, '+');
+    const arrive = `${selectedLeg.place.name}, ${selectedLeg.place.country}`.replace(/ /g, '+');
+    const departureDate = moment(selectedLeg.prevLeg.date).format('YYYY-M-D');
+
     return (
       <div className={styles.root}>
-        <h2>Getting to {selectedLeg.place.name}, {selectedLeg.place.country}</h2>
+        <iframe
+          src={`//flights.loopminds.com/?depart=${depart}&arrive=${arrive}&departureDate=${departureDate}`}
+          width="100%"
+          className={styles.iframe}
+          frameBorder="0"
+        />
       </div>
     );
   }

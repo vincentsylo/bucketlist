@@ -18,10 +18,6 @@ const types = [{
   name: 'Cafe',
   icon: 'fa-coffee',
   type: 'cafe',
-}, {
-  name: 'Shopping Mall',
-  icon: 'fa-shopping-bag',
-  type: 'shopping_mall',
 }];
 
 @plannerTemplate()
@@ -101,7 +97,7 @@ export default class Activities extends Component {
   }
 
   selectType(type) {
-    this.setState({ type }, () => this.findPlaces(this.state.activitySearch));
+    this.setState({ type, selectedPlace: null }, () => this.findPlaces(this.state.activitySearch));
   }
 
   selectPlace(place) {

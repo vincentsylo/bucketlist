@@ -16,10 +16,10 @@
 
 .setting {
   display: block;
+}
 
-  &:hover {
-    cursor: pointer;
-  }
+.setting:hover {
+  cursor: pointer;
 }
 
 .setting.deleteIcon:hover {

@@ -76,7 +76,7 @@ export default class AddLeg extends Component {
 
     if (selectedPlace && date) {
       await api.post('/leg/create', { place: selectedPlace, date, journeyId: journey.id });
-      this.setState({ selectedPlace: {}, date: moment(), showForm: false });
+      this.setState({ selectedPlace: {}, date: moment(date), showForm: false });
       dispatch(journeyActions.fetchJourney(journey.id));
     } else {
       this.showValidation();

@@ -13,11 +13,10 @@
 }
 
 .left {
-  width: 400px;
+  width: 300px;
 }
 
 .main {
   background-color: #F8F8F9;
   flex: 1;
 }
-

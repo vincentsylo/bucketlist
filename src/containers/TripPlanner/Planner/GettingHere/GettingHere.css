@@ -1,3 +1,10 @@
 .root {
+  display: flex;
   flex: 1;
+  flex-direction: column;
+}
+
+.iframe {
+  flex: 1;
+  margin: 0 auto;
 }

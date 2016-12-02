@@ -1,6 +1,8 @@
+import cssImport from 'postcss-import';
 import cssAutoPrefixer from 'autoprefixer';
 import cssPxToRem from 'postcss-pxtorem';
 import cssNesting from 'postcss-nesting';
+import cssNested from 'postcss-nested';
 import cssModulesValues from 'postcss-modules-values';
 
 class BuildCompletePlugin {
@@ -76,9 +78,11 @@ const statsConfig = {
 const commonConfig = {
   cache: true,
 
-  postcss() {
+  postcss(webpack) {
     return [
+      cssImport({ addDependencyTo: webpack }),
       cssNesting(),
+      cssNested(),
       cssPxToRem(),
       cssAutoPrefixer({
         browsers: [

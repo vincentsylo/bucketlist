@@ -1,4 +1,5 @@
 import { api } from '../../utils';
+import { plannerActions } from '../actions';
 
 export const JOURNEY_INVALID = 'JOURNEY_INVALID';
 export const JOURNEY_FETCHING = 'JOURNEY_FETCHING';
@@ -24,6 +25,7 @@ export function fetchJourneys() {
 export function fetchJourney(id) {
   return async (dispatch) => {
     dispatch({ type: JOURNEY_FETCHING });
+    dispatch(plannerActions.selectLeg(null, ''));
 
     const response = await api.get(`/journey/${id}`)
       .catch((error) => {
