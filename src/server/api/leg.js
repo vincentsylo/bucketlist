@@ -28,6 +28,22 @@ module.exports = (server) => {
   });
 
   /**
+   * Update leg
+   */
+  server.post('/api/leg/update', jwtMiddleware, async (req, res) => {
+    const { journeyId, legId, data } = req.body;
+
+    const journey = await models.Journey.findOne({ where: { userId: req.user.id, id: journeyId } });
+
+    if (journey) {
+      await models.Leg.update({ ...data }, { where: { id: legId, journeyId } });
+      return res.sendStatus(200);
+    }
+
+    return res.sendStatus(500);
+  });
+
+  /**
    * Delete leg
    */
   server.post('/api/leg/remove', jwtMiddleware, async (req, res) => {

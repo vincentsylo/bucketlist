@@ -61,13 +61,22 @@ export default class Leg extends Component {
     const contentCls = cx(styles.content, {
       [styles.selected]: _.isEqual(leg, selectedLeg),
     });
-    const transportCls = cx(styles.icon, {
+
+    const transportIconCls = cx(styles.icon, {
       [styles.enabled]: leg.enableTransport,
-      [styles.selected]: plannerView === 'getting-here',
+      [styles.selected]: plannerView === 'transport',
     });
-    const hotelsCls = cx(styles.icon, {
+    const hotelsIconCls = cx(styles.icon, {
       [styles.enabled]: leg.enableHotels,
-      [styles.selected]: plannerView === 'hotels',
+      [styles.selected]: plannerView === 'hotel',
+    });
+
+    const hotelsLineCls = cx(styles.verticalLine, {
+      [styles.hotels]: leg.hotel,
+    });
+
+    const transportLineCls = cx(styles.verticalLine, {
+      [styles.flights]: leg.transport,
     });
 
     return (
@@ -96,13 +105,13 @@ export default class Leg extends Component {
             <div>{leg.place.country}</div>
           </div>
           <div className={styles.actions}>
-            <div className={transportCls} onClick={e => this.selectLeg(e, 'getting-here')}>
+            <div className={transportIconCls} onClick={e => this.selectLeg(e, 'transport')}>
               <span className="fa-stack">
                 <span className="fa fa-square-o fa-stack-2x" />
                 <span className="fa fa-plane fa-stack-1x" />
               </span>
             </div>
-            <div className={hotelsCls} onClick={e => this.selectLeg(e, 'hotels')}>
+            <div className={hotelsIconCls} onClick={e => this.selectLeg(e, 'hotel')}>
               <span className="fa-stack">
                 <span className="fa fa-square-o fa-stack-2x" />
                 <span className="fa fa-bed fa-stack-1x" />
@@ -111,8 +120,8 @@ export default class Leg extends Component {
           </div>
         </div>
         <div className={cx(styles.verticalLine, styles.default)} />
-        { leg.enableHotels ? <div className={cx(styles.verticalLine, styles.hotels)} /> : null }
-        { leg.enableTransport ? <div className={cx(styles.verticalLine, styles.flight)} /> : null }
+        { leg.enableHotels ? <div className={hotelsLineCls} /> : null }
+        { leg.enableTransport ? <div className={transportLineCls} /> : null }
       </div>
     );
   }

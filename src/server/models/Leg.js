@@ -9,10 +9,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
     },
     transport: {
-      type: DataTypes.STRING,
+      type: DataTypes.BOOLEAN,
     },
     hotel: {
-      type: DataTypes.STRING,
+      type: DataTypes.BOOLEAN,
     },
     isOrigin: {
       type: DataTypes.BOOLEAN,

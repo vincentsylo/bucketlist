@@ -79,7 +79,7 @@
     top: 0;
   }
 
-  &.flight {
+  &.flights {
     border-left: 2px dotted action;
     height: 100%;
     right: 4.2em;

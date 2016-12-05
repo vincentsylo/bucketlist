@@ -1,4 +1,4 @@
-const key = 'AIzaSyDottDEdpNSNOHxXVMJda8kU4Jk0zSPvvg';
+const key = 'AIzaSyCPxD0CWE2jQf5iWYq9N3SoaI2OYEszB-w';
 
 export default {
   getImageUrl(photoReference) {
