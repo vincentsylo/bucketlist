@@ -4,10 +4,10 @@
 .root {
   margin-bottom: 4em;
   position: relative;
-}
 
-.root.isOrigin {
-  padding-top: 4em;
+  &.isOrigin {
+    padding-top: 4em;
+  }
 }
 
 .settings {
@@ -16,18 +16,18 @@
 
 .setting {
   display: block;
-}
 
-.setting:hover {
-  cursor: pointer;
-}
+  &:hover {
+    cursor: pointer;
+  }
 
-.setting.deleteIcon:hover {
-  color: dangerHover;
-}
+  &.deleteIcon:hover {
+    color: dangerHover;
+  }
 
-.setting.settingsIcon:hover {
-  color: warningHover;
+  &.settingsIcon:hover {
+    color: warningHover;
+  }
 }
 
 .destination,
@@ -57,52 +57,52 @@
   padding: 0.5em;
   position: relative;
   z-index: 1;
-}
 
-.content:hover {
-  cursor: pointer;
+  &:hover {
+    cursor: pointer;
+  }
+
+  &.selected {
+    background-color: action;
+  }
 }
 
 .verticalLine {
   height: 100%;
   position: absolute;
   z-index: 2;
-}
 
-.verticalLine.default {
-  border-left: 3px solid action;
-  left: 6.8em;
-  padding-bottom: 4em;
-  top: 0;
-}
+  &.default {
+    border-left: 3px solid action;
+    left: 6.8em;
+    padding-bottom: 4em;
+    top: 0;
+  }
 
-.verticalLine.flight {
-  border-left: 2px dotted action;
-  height: 100%;
-  right: 4.2em;
-  top: -99%;
-  z-index: 0;
-}
+  &.flight {
+    border-left: 2px dotted action;
+    height: 100%;
+    right: 4.2em;
+    top: -99%;
+    z-index: 0;
+  }
 
-.verticalLine.hotels {
-  border-left: 2px dotted action;
-  height: 100%;
-  right: 1.7em;
-  top: 99%;
-  z-index: 0;
-}
-
-.content.selected {
-  background-color: action;
+  &.hotels {
+    border-left: 2px dotted action;
+    height: 100%;
+    right: 1.7em;
+    top: 99%;
+    z-index: 0;
+  }
 }
 
 .icon {
   color: #333;
   margin: 0.25em;
-}
 
-.icon.enabled {
-  color: #fff;
+  &.enabled {
+    color: #fff;
+  }
 }
 
 .icon.enabled:hover,

@@ -20,7 +20,6 @@ class BuildCompletePlugin {
       }
     });
   }
-
 }
 
 function rewriteSourceMaps({ protocol, host, port }) {
@@ -81,8 +80,8 @@ const commonConfig = {
   postcss(webpack) {
     return [
       cssImport({ addDependencyTo: webpack }),
-      cssNesting(),
       cssNested(),
+      cssNesting(),
       cssPxToRem(),
       cssAutoPrefixer({
         browsers: [

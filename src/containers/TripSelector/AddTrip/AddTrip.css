@@ -21,15 +21,15 @@
   top: 0;
   transition: all 0.2s ease-in-out;
   width: 100%;
-}
 
-.content.showForm {
-  background-color: rgba(0, 0, 0, 0);
-}
+  &.showForm {
+    background-color: rgba(0, 0, 0, 0);
+  }
 
-.content:hover:not(.showForm) {
-  background-color: rgba(0, 0, 0, 0);
-  cursor: pointer;
+  &:hover:not(.showForm) {
+    background-color: rgba(0, 0, 0, 0);
+    cursor: pointer;
+  }
 }
 
 .title {

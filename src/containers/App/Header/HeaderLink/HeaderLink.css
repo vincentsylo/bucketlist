@@ -11,9 +11,9 @@
   text-decoration: none;
   text-transform: uppercase;
   transition: all 0.2s ease;
-}
 
-.link:hover {
-  background-color: secondary;
-  color: lightFont;
+  &:hover {
+    background-color: secondary;
+    color: lightFont;
+  }
 }

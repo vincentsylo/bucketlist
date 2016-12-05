@@ -45,8 +45,7 @@ const browserConfig = {
       exclude: /node_modules/,
       loader: ExtractTextPlugin.extract(
         'style',
-        'css?modules&-minifyGradients&localIdentName=[name]_[local]_[hash:base64:3]',
-        'postcss?parser=postcss-scss',
+        'css?modules&-minifyGradients&localIdentName=[name]_[local]_[hash:base64:3]!postcss?parser=postcss-scss',
       ),
     }, {
       test: /\.css$/,
