@@ -33,6 +33,11 @@ module.exports = (server) => {
         as: 'legs',
         include: [{ model: models.Place, as: 'place' }],
       }],
+      order: [[
+        { model: models.Leg, as: 'legs' },
+        'date',
+        'asc',
+      ]],
     }).catch(() => res.sendStatus(400));
 
     return res.json(journey);

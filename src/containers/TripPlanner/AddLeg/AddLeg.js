@@ -35,7 +35,7 @@ export default class AddLeg extends Component {
     const { journey } = this.props;
 
     this.setState({
-      date: moment(_.last(journey.legs).date),
+      date: moment(_.last(journey.legs).date).add('days', 1),
     });
   }
 
@@ -76,7 +76,7 @@ export default class AddLeg extends Component {
 
     if (selectedPlace && date) {
       await api.post('/leg/create', { place: selectedPlace, date, journeyId: journey.id });
-      this.setState({ selectedPlace: {}, date: moment(date), showForm: false });
+      this.setState({ selectedPlace: {}, date: moment(date).add('days', 1), showForm: false });
       dispatch(journeyActions.fetchJourney(journey.id));
     } else {
       this.showValidation();

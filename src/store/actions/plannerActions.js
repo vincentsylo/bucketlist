@@ -7,12 +7,13 @@ export function selectLeg(leg, view) {
     const { selectedLeg, plannerView } = getState().planner;
     const { selectedJourney } = getState().journey;
 
-    if (!leg[view]) {
+    if (leg && view && view !== 'activities' && !leg[view]) {
       await api.post('/leg/update', {
         journeyId: selectedJourney.id,
-        legId: selectedLeg.id,
+        legId: leg.id,
         data: { [view]: true },
       });
+      leg[view] = true;
     }
 
     const newLeg = selectedLeg === leg && plannerView === view ? null : leg;

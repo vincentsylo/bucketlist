@@ -2,11 +2,11 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
 import plannerTemplate from '../plannerTemplate';
-import styles from './GettingHere.css';
+import styles from './Transport.css';
 
 @plannerTemplate()
 @connect(state => ({ selectedLeg: state.planner.selectedLeg }))
-export default class GettingHere extends Component {
+export default class Transport extends Component {
   static propTypes = {
     selectedLeg: PropTypes.object,
   };

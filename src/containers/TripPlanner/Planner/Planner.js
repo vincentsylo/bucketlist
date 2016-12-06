@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import template from '../template';
 import { CallToAction } from '../../../components';
 import Activities from './Activities/Activities';
-import GettingHere from './GettingHere/GettingHere';
+import Transport from './Transport/Transport';
 import Origin from './Origin/Origin';
 import Hotels from './Hotels/Hotels';
 import AddLeg from '../AddLeg/AddLeg';
@@ -52,7 +52,7 @@ export default class Planner extends Component {
     return [
       <Origin key="origin" selected={selectedLeg.isOrigin} />,
       <Activities key="activities" selected={plannerView === 'activities' && !selectedLeg.isOrigin} />,
-      <GettingHere key="getting-here" selected={plannerView === 'getting-here' && !selectedLeg.isOrigin} />,
+      <Transport key="transport" selected={plannerView === 'transport' && !selectedLeg.isOrigin} />,
       <Hotels key="hotels" selected={plannerView === 'hotels' && !selectedLeg.isOrigin} />,
     ];
   }
